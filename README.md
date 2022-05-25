@@ -1,18 +1,28 @@
 # NBA Code Challenge
 
 - [NBA Code Challenge](#nba-code-challenge)
-  - [Install App](#install-app)
-  - [Android Emulator](#android-emulator)
+  - [Installing the App (Only once)](#installing-the-app-only-once)
+  - [Running the App](#running-the-app)
+  - [Testing](#testing)
+  - [Linting](#linting)
   - [Objetives](#objetives)
   - [Examples](#examples)
 
-## Install App
-1. `npm i` (Only once)
+## Installing the App (Only once)
+1. `npm i`
 2. `npm start`
+3. `emulator -avd <emulator-name>`
 4. `npx react-native run-android` / `npx react-native run-ios`
 
-## Android Emulator
-- `emulator -avd <emulator-name>`
+## Running the App
+1. `npm start`
+2. `emulator -avd <emulator-name>`
+
+## Testing
+- `npm run test:watch`
+
+## Linting
+- `npm run lint:fix`
 
 ## Objetives
 - [ ] Read Sportsdata.io NBA [API docs](https://sportsdata.io/developers/api-documentation/nba).
