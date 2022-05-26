@@ -8,6 +8,8 @@
   - [Objetives](#objetives)
   - [Examples](#examples)
 
+___
+
 ## Installing the App (Only once)
 1. `npm i`
 2. `npm start`
@@ -28,12 +30,14 @@
 - [ ] Read Sportsdata.io NBA [API docs](https://sportsdata.io/developers/api-documentation/nba).
 - [ ] Create Sportsdata.io NBA [API key](https://sportsdata.io/cart/free-trial).
 - [ ] Create a new Screen with a `<FlatList/>` component listing the active teams from the current season.
-    - [ ] Tapping on a team should open the team detail screen.
 - [ ] Create a new Screen with a `<FlatList/>` component listing players from certain team.
-    - [ ] Tapping on a player should open the player detail screen.
-- [ ] Create a new Screen with a detail view of a player.
+  - [ ] Add a search bar.
+- [ ] Create a new Screen with a detailed view of a player.
 - [ ] Manage the state using [Zustand](https://github.com/pmndrs/zustand)
 - [ ] Add tests using [React Native Testing Library](https://callstack.github.io/react-native-testing-library/docs/getting-started/)
+    - [ ] Tapping on a team should open the team detail screen.
+    - [ ] Tapping on a player should open the player detail screen.
+    - [ ] Updating the search box input should update the player list.
 
 ## Examples
 <img src="https://cdn.dribbble.com/users/2539530/screenshots/8088320/media/cb83c6d48b6eae3d1c22190e662a77ee.jpg?compress=1&resize=400x300" alt="drawing" style="width:400px;"/>
