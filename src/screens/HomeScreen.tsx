@@ -1,18 +1,19 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button, Alert} from 'react-native';
 import useGetTeams from '../hooks/useGetTeams';
 import {HomeScreenProps} from '../types/navigation';
 
 const HomeScreen = () => {
   const {data, loading, error} = useGetTeams();
-  // console.log(data?.map(team => team.WikipediaLogoUrl));
+  //console.log(data?.map(team => team.Name));
 
   const navigation = useNavigation<HomeScreenProps>();
 
   return (
     <View style={styles.center}>
       <Text>Home Screen</Text>
+      <Text></Text>
     </View>
   );
 };

@@ -9,6 +9,7 @@ function useGetTeams() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     setLoading(true);
     axios
