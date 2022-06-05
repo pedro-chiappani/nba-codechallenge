@@ -7,7 +7,7 @@ import { Team } from './team';
   export type RootStackParamList = {
     Home: {param: string};
     Teams: undefined;
-    PlayerList: {teamId: number};
+    PlayerList: {team: string};
   };
   
   export type RootStackScreenProps<T extends keyof RootStackParamList> =

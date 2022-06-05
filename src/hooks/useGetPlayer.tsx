@@ -3,7 +3,7 @@ import axios from 'axios';
 import {API_URL, API_TOKEN} from '@env';
 import {Player} from '../types/player';
 
-function useGetPlayer(teamId: number) {
+function useGetPlayer(teamId: string) {
   const [data, setData] = useState<Player[]>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState(null);
@@ -22,7 +22,6 @@ function useGetPlayer(teamId: number) {
         setLoading(false);
       });
   }, [teamId]);
-
   return {data, loading, error};
 }
 

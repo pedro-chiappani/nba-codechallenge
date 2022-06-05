@@ -6,22 +6,16 @@ import {TeamsScreenProps} from '../types/navigation';
 import { Team } from '../types/team';
 import { Player } from '../types/player';
 import { SvgCssUri } from 'react-native-svg';
+import PlayerItem from '../components/playerItem';
 
-const PlayerListScreen = (teamId: number) => {
+const PlayerListScreen = (teamId: string) => {
+  console.log("esto es", {teamId});
   const {data, loading, error} = useGetPlayer(teamId);
-  //console.log(data?.map(team => team.Name));
+  console.log("data: ", data);
 
-  const navigation = useNavigation<TeamsScreenProps>();
-
-  const PlayerItem = (player: Player) => (
-    <TouchableOpacity onPress={() => navigation.navigate('PlayerList', {teamId: teamId})}
-    style= {[styles.center]}>
-      <SvgCssUri uri= {player.PhotoUrl} width="100%" fill={'black'}/>
-    </TouchableOpacity>
-  );
 
   return (
-    <FlatList data={data} renderItem ={(team) => <PlayerItem {...team.item}/>} />
+    <FlatList data={data} renderItem ={(player) => <PlayerItem {...player.item}/>} />
   );
 };
 
