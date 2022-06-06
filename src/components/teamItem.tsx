@@ -9,9 +9,9 @@ import { HomeScreenProps } from "../types/navigation";
 const TeamItem = (team: Team) => {
     
     const navigation = useNavigation();
-    console.log(navigation.navigate('PlayerList', {team: team.TeamID}));
+    //console.log(navigation.navigate('PlayerList', {team: team.TeamID}));
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('PlayerList', {team: team.TeamID.toString()})}
+        <TouchableOpacity onPress={() => navigation.navigate('PlayerList', {team: team.Key})}
         style= {[styles.container, 
         {backgroundColor: `#${team.PrimaryColor}`}]}>
         <SvgCssUri uri= {team.WikipediaLogoUrl} width="100%" fill={'black'}/>

@@ -1,21 +1,24 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Button, Alert, TouchableOpacity, FlatList} from 'react-native';
 import useGetPlayer from '../hooks/useGetPlayer';
-import {TeamsScreenProps} from '../types/navigation';
-import { Team } from '../types/team';
-import { Player } from '../types/player';
-import { SvgCssUri } from 'react-native-svg';
+import {RootStackScreenProps, TeamsScreenProps} from '../types/navigation';
 import PlayerItem from '../components/playerItem';
+import SearchBar from '../components/searchBar';
 
-const PlayerListScreen = (teamId: string) => {
-  console.log("esto es", {teamId});
-  const {data, loading, error} = useGetPlayer(teamId);
-  console.log("data: ", data);
+const PlayerListScreen = ({route}: RootStackScreenProps<'PlayerList'>) => {
+  //console.log("esto es", route.params.team);
+  const params = route.params;
+  const {data, loading, error} = useGetPlayer(params.team);
+  //console.log("data: ", data);
+  
 
 
   return (
-    <FlatList data={data} renderItem ={(player) => <PlayerItem {...player.item}/>} />
+    <View>
+      <SearchBar {...''}/>
+      <FlatList data={data} renderItem ={(player) => <PlayerItem {...player.item}/>} />
+    </View>
   );
 };
 
