@@ -1,17 +1,26 @@
-import { useNavigation } from "@react-navigation/native"
+import { TabRouter, useNavigation } from "@react-navigation/native"
 import React, { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, Text, ImageBase } from "react-native";
 import { SvgCssUri, } from "react-native-svg";
 import { TeamsScreenProps } from "../types/navigation";
 import { Player } from "../types/player";
 
-const PlayerItem = (player: Player) => {
+interface PlayerItemProps {
+    player: Player,
+    primary: string,
+    secondary: string,
+    team: string
+}
+
+const PlayerItem = ({player, primary, secondary, team}: PlayerItemProps) => {
 
     const navigation = useNavigation();
+
+
     return(
-        <TouchableOpacity style= {[styles.container]} onPress={() => navigation.navigate('Player', {player: player})}>
+        <TouchableOpacity style= {[styles.container, {backgroundColor: `#${primary}`, shadowColor: `#${secondary}`}]} onPress={() => navigation.navigate('Player', {player: player, primary: primary, secondary: secondary})}>
         <Image style={styles.tinyImage} source={{uri: player.PhotoUrl}} resizeMode='contain' />
-        <Text style={styles.text}>{player.FirstName} {player.LastName}</Text>
+        <Text style={[styles.text, {color: `#${secondary}`}]}>{player.FirstName} {player.LastName}</Text>
         </TouchableOpacity>
    );
 };
@@ -23,18 +32,17 @@ const styles = StyleSheet.create({
         marginTop: 6,
         marginHorizontal: 6,
         borderRadius: 8,
-        shadowColor: '#171717',
         shadowOffset: { width: -2, height: 4},
         shadowOpacity: 0.2,
         shadowRadius: 3,
-        elevation: 4,
+        shadowColor:'white',
+        elevation: 10,
         overflow: "hidden",
         justifyContent: 'flex-start'
       },
     text:{
         height:50,
         flex: .8,
-        color: 'black',
         alignSelf: 'center',
         justifyContent: "center",
         left: 75

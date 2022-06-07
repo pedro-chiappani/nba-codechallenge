@@ -12,7 +12,7 @@ const PlayerScreen = ({route}: RootStackScreenProps<'Player'>) => {
     return(
         <View style={styles.container}>
             <Image style={styles.tinyImage} source={{uri: player.PhotoUrl}}/>
-            <Text style={styles.text}> 
+            <Text style={[styles.text, {color:`#${route.params.secondary}`}]}> 
             {"\n"}{"\n"}
             {player.FirstName} {player.LastName} 
             {"\n"}{"\n"}
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
       },
     text:{
-        color: 'black',
+        
     },
     tinyImage:{
         flex: .0,

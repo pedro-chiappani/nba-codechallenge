@@ -6,9 +6,11 @@ import PlayerItem from '../components/playerItem';
 import {Player} from '../types/player';
 import SearchBox from '../components/searchBar';
 
-const PlayerListScreen = ({route}: RootStackScreenProps<'PlayerList'>) => {
+const PlayerListScreen = ({route}: RootStackScreenProps<'PlayerList'>, {navigation} : any) => {
+
   const {data, loading, error} = useGetPlayer(route.params.team);
   const [players, setPlayers] = useState<Player[] | undefined>(data);
+  
 
   const updateSearch = (query: string) => {
     setPlayers(
@@ -33,9 +35,9 @@ const PlayerListScreen = ({route}: RootStackScreenProps<'PlayerList'>) => {
       contentContainerStyle={{paddingBottom: 40}}
       renderItem={({item, index}) => {
         return index == 0 ? (
-          <SearchBox updateSearch={updateSearch} />
+          <SearchBox updateSearch={updateSearch} color={route.params.primary} />
         ) : (
-          <PlayerItem {...item} />
+          <PlayerItem player={item} primary={route.params.primary} secondary={route.params.secondary} team={route.params.team}/>
         );
       }}
     />
