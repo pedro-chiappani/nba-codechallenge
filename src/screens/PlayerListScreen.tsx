@@ -1,24 +1,44 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Button, Alert, TouchableOpacity, FlatList} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
 import useGetPlayer from '../hooks/useGetPlayer';
-import {RootStackScreenProps, TeamsScreenProps} from '../types/navigation';
+import {RootStackScreenProps} from '../types/navigation';
 import PlayerItem from '../components/playerItem';
-import SearchBar from '../components/searchBar';
+import {Player} from '../types/player';
+import SearchBox from '../components/searchBar';
 
 const PlayerListScreen = ({route}: RootStackScreenProps<'PlayerList'>) => {
-  //console.log("esto es", route.params.team);
-  const params = route.params;
-  const {data, loading, error} = useGetPlayer(params.team);
-  //console.log("data: ", data);
-  
+  const {data, loading, error} = useGetPlayer(route.params.team);
+  const [players, setPlayers] = useState<Player[] | undefined>(data);
 
+  const updateSearch = (query: string) => {
+    setPlayers(
+      query
+        ? data?.filter(p => {
+            const name = p.FirstName + ' ' + p.LastName;
+            return name.toLowerCase().includes(query.toLowerCase());
+          })
+        : data,
+    );
+  };
+
+  useEffect(() => {
+    if (!loading) setPlayers(data);
+  }, [loading]);
+
+  const searchBox: Player = {PlayerID: -1} as Player;
 
   return (
-    <View>
-      <SearchBar {...''}/>
-      <FlatList data={data} renderItem ={(player) => <PlayerItem {...player.item}/>} />
-    </View>
+    <FlatList
+      data={players ? [searchBox, ...players] : [searchBox]}
+      contentContainerStyle={{paddingBottom: 40}}
+      renderItem={({item, index}) => {
+        return index == 0 ? (
+          <SearchBox updateSearch={updateSearch} />
+        ) : (
+          <PlayerItem {...item} />
+        );
+      }}
+    />
   );
 };
 

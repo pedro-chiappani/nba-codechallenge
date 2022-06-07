@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import { Searchbar } from "react-native-paper";
+import React, {useState} from 'react';
+import SearchBar from "react-native-dynamic-search-bar";
 
-const SearchBar = (text: string) => {
-    
-    const [search, setSearch] = useState('');
-    const updateSearch = (query: string) => setSearch(query);
-
-    return (
-        <Searchbar placeholder="Buscar..." onChangeText={updateSearch} value={search}/>
-    );
+interface SearchBarProps {
+  updateSearch: (query: string) => void;
 }
 
-export default SearchBar;
+const SearchBox = ({updateSearch}: SearchBarProps) => {
+  return (
+    <SearchBar
+      placeholder="Buscar..."
+      onChangeText={updateSearch}
+    />
+  );
+};
+
+export default SearchBox;
