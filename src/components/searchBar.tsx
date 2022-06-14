@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from "react-native-dynamic-search-bar";
+import SearchBar from 'react-native-dynamic-search-bar';
 
 interface SearchBarProps {
   updateSearch: (query: string) => void;
@@ -13,10 +13,9 @@ const SearchBox = ({updateSearch, color}: SearchBarProps) => {
       textInputStyle={[{color: 'white'}]}
       onChangeText={updateSearch}
       style={[{backgroundColor: `#${color}`}]}
-      placeholderTextColor= 'white'
+      placeholderTextColor="white"
     />
   );
 };
-
 
 export default SearchBox;

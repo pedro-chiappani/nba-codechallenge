@@ -6,11 +6,12 @@ import PlayerItem from '../components/playerItem';
 import {Player} from '../types/player';
 import SearchBox from '../components/searchBar';
 
-const PlayerListScreen = ({route}: RootStackScreenProps<'PlayerList'>, {navigation} : any) => {
-
+const PlayerListScreen = (
+  {route}: RootStackScreenProps<'PlayerList'>,
+  {navigation}: any,
+) => {
   const {data, loading, error} = useGetPlayer(route.params.team);
   const [players, setPlayers] = useState<Player[] | undefined>(data);
-  
 
   const updateSearch = (query: string) => {
     setPlayers(
@@ -24,7 +25,9 @@ const PlayerListScreen = ({route}: RootStackScreenProps<'PlayerList'>, {navigati
   };
 
   useEffect(() => {
-    if (!loading) setPlayers(data);
+    if (!loading) {
+      setPlayers(data);
+    }
   }, [loading]);
 
   const searchBox: Player = {PlayerID: -1} as Player;
@@ -37,7 +40,12 @@ const PlayerListScreen = ({route}: RootStackScreenProps<'PlayerList'>, {navigati
         return index == 0 ? (
           <SearchBox updateSearch={updateSearch} color={route.params.primary} />
         ) : (
-          <PlayerItem player={item} primary={route.params.primary} secondary={route.params.secondary} team={route.params.team}/>
+          <PlayerItem
+            player={item}
+            primary={route.params.primary}
+            secondary={route.params.secondary}
+            team={route.params.team}
+          />
         );
       }}
     />

@@ -1,19 +1,27 @@
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image} from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import { SvgCssUri } from 'react-native-svg';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Alert,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
+import {SvgCssUri} from 'react-native-svg';
 import TeamItem from '../components/teamItem';
 import useGetTeams from '../hooks/useGetTeams';
 import {HomeScreenProps} from '../types/navigation';
-import { Team } from '../types/team';
+import {Team} from '../types/team';
 
 const TeamsScreen = () => {
   const {data, loading, error} = useGetTeams();
   //console.log(data?.map(team => team.WikipediaLogoUrl));
 
   return (
-    <FlatList data={data} renderItem ={(team) => <TeamItem {...team.item}/>} />
+    <FlatList data={data} renderItem={team => <TeamItem {...team.item} />} />
   );
 };
 

@@ -29,22 +29,29 @@ const App = () => (
                 headerTitleAlign: 'center',
                 headerTintColor: `#${route.params.primary}`,
                 headerStyle: {backgroundColor: `#${route.params.secondary}`},
-                contentStyle: {backgroundColor: `#${route.params.primary}`}
+                contentStyle: {backgroundColor: `#${route.params.primary}`},
               }
             : {title: 'Players'}
         }
       />
-      <Stack.Screen name="Player" component={PlayerScreen} options={({route}) =>
+      <Stack.Screen
+        name="Player"
+        component={PlayerScreen}
+        options={({route}) =>
           route.params
             ? {
-                title: route.params.player.FirstName + ' ' + route.params.player.LastName,
+                title:
+                  route.params.player.FirstName +
+                  ' ' +
+                  route.params.player.LastName,
                 headerTitleAlign: 'center',
                 headerTintColor: `#${route.params.primary}`,
                 headerStyle: {backgroundColor: `#${route.params.secondary}`},
-                contentStyle: {backgroundColor: `#${route.params.primary}`}
+                contentStyle: {backgroundColor: `#${route.params.primary}`},
               }
             : {title: 'Player'}
-        } />
+        }
+      />
       <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
   </NavigationContainer>

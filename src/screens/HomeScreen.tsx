@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.center}>
-      <Button onPress={() => navigation.push('Teams')} title='Teams'/>
+      <Button onPress={() => navigation.push('Teams')} title="Teams" />
       <Text>Home Screen</Text>
       <Text>Hola</Text>
     </View>
