@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { Matches } from "../types/match";
 import { Team } from "../types/team";
 import useGetTeams from "../hooks/useGetTeams";
-import useGetPlayer from "../hooks/useGetPlayer";
+import { equipos } from "../hooks/equipos";
 
 const ScoreItem = (match: Matches) => {
   
@@ -25,7 +25,7 @@ const ScoreItem = (match: Matches) => {
   
   return (
     <View>
-    <Text style={styles.title}>Los *{home?.map(a => a.Name)}* {res} *{away?.map(a => a.Name)}* {match.HomeTeamScore}-{match.AwayTeamScore}</Text>
+    <Text style={styles.title}>Los *{home?.map(a => a.Name)}* {} {res} *{away?.map(a => a.Name)}* {match.HomeTeamScore}-{match.AwayTeamScore}</Text>
     </View>
     );
 };
