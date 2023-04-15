@@ -4,31 +4,32 @@ import {API_URL, API_TOKEN} from '@env';
 import {Matches} from '../types/match';
 
 function useGetMatches() {
-  const [data, setData] = useState<Matches[]>();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState(null);
+  const [dat, setDat] = useState<Matches[]>();
+  const [load, setLoad] = useState<boolean>(false);
+  const [err, setErr] = useState(null);
   const date = new Date();
+  date.setDate(date.getDate() -1)
   let day = date.getDate();
   let month = date.getMonth()+1;
   let year = date.getFullYear();
   let currentDate = `${year}-${month}-${day}`;
 
   useEffect(() => {
-    setLoading(true);
+    setLoad(true);
     axios
     .get(API_URL + `/ScoresBasic/${currentDate}?key=${API_TOKEN}`)
     .then(response => {
-        setData(response.data);
+        setDat(response.data);
       })
       .catch(err => {
-        setError(err);
+        setErr(err);
       })
       .finally(() => {
-        setLoading(false);
+        setLoad(false);
       });
   }, []);
 
-  return {data, loading, error};
+  return {dat, load, err};
 }
 
 export default useGetMatches;

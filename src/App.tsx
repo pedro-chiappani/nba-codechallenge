@@ -6,19 +6,27 @@ import {HomeScreen} from './screens';
 import TeamsScreen from './screens/TeamsScreen';
 import PlayerListScreen from './screens/PlayerListScreen';
 import PlayerScreen from './screens/PlayerScreen';
+// import Ionicons from 'react-native-vector-icons/Ionicons'
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator screenOptions={{headerShown:false}}>
+      <Tab.Screen name='Casa' component={HomeScreen} />
+      <Tab.Screen name='Equipos' component={TeamsScreen}/>
+    </Tab.Navigator>
+    
+  );
+};
+
 const App = () => (
   <NavigationContainer>
     
-    <Tab.Navigator>
-      <Tab.Screen name='Home' component={HomeScreen}/>
-      <Tab.Screen name='Teams' component={TeamsScreen}/>
-    </Tab.Navigator>
-    {/* <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Navigator>
+      <Stack.Screen name="NBApp" component={TabNavigator} />
       <Stack.Screen
         name="Teams"
         component={TeamsScreen}
@@ -60,7 +68,7 @@ const App = () => (
             : {title: 'Player'}
         }
       />
-    </Stack.Navigator> */}
+    </Stack.Navigator>
   </NavigationContainer>
 );
 

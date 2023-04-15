@@ -5,18 +5,22 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  Button,
-  Alert,
   SafeAreaView,
 } from 'react-native';
+import MatchItem from '../components/matchitem'
 import useGetMatches from '../hooks/useGetMatches';
 import {HomeScreenProps} from '../types/navigation';
 import Clipboard from '@react-native-clipboard/clipboard';
+import { FlatList } from 'react-native-gesture-handler';
+import { Matches } from '../types/match';
+import { Team } from '../types/team';
+import ScoreItem from '../components/scoreitem';
+import useGetScores from '../hooks/useGetScores';
 
 const HomeScreen = () => {
   const {data, loading, error} = useGetMatches();
-  //console.log(data?.map(team => team.Name));
-  //console.log(data);
+  const {dat, load, err} = useGetScores();
+
   
   const navigation = useNavigation<HomeScreenProps>();
 
@@ -31,29 +35,59 @@ const HomeScreen = () => {
     const text = await Clipboard.getString();
     setCopiedText(text);
   };
+  const fecha = new Date();
+  let hoy = fecha.getDate() + "/" + (fecha.getMonth() +1);
+  fecha.setDate(fecha.getDate() -1)
+  let ayer = fecha.getDate() + "/" + (fecha.getMonth()+1);
+
 
   return (
-    <SafeAreaView style={{flex:1}}>
-    <View style={styles.center}>
-      <TouchableOpacity onPress={copyToClipboard}>
-        
-        <Text>{data?.map(match=>match.HomeTeam)} vs {data?.map(match => match.AwayTeam)}</Text>
+    <View style={styles.container}>
+      {/* <FlatList data={data} renderItem={({item}) => <Text style={styles.item}> juega {item.HomeTeam} vs {item.AwayTeam}</Text>}/> */}
+      <TouchableOpacity>
+        <Text style={styles.title}>Partidos {hoy}</Text>
+        <Text></Text>
+        <FlatList data={data} renderItem={match => <MatchItem {...match.item}/>}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={fetchCopiedText}>
-        <Text>Pa ver</Text>
+      <Text>                       </Text>
+      <Text>                       </Text>
+      <Text>                       </Text>
+      <TouchableOpacity>
+      <Text style={styles.title}>Resultados {ayer}</Text>
+      <Text></Text>
+      <FlatList data={dat} renderItem={score => <ScoreItem{...score.item}/>}/>
       </TouchableOpacity>
-      <Text>{coppiedText}</Text>
     </View>
-    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   center: {
-    flex: 1,
+    flex: 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+  title: {
+    fontSize: 23,
+  },
+  container: {
+    flex: 1,
+    paddingTop: 22,
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+})
 
 export default HomeScreen;
+
+
+// <TouchableOpacity onPress={copyToClipboard}>
+// <Text>Alo</Text>
+// </TouchableOpacity>
+// <TouchableOpacity onPress={fetchCopiedText}>
+// <Text>Pa ver</Text>
+// </TouchableOpacity>
+// <Text>{coppiedText}</Text>
