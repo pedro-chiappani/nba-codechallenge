@@ -12,8 +12,6 @@ import useGetMatches from '../hooks/useGetMatches';
 import {HomeScreenProps} from '../types/navigation';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { FlatList } from 'react-native-gesture-handler';
-import { Matches } from '../types/match';
-import { Team } from '../types/team';
 import ScoreItem from '../components/scoreitem';
 import useGetScores from '../hooks/useGetScores';
 
@@ -43,27 +41,26 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* <FlatList data={data} renderItem={({item}) => <Text style={styles.item}> juega {item.HomeTeam} vs {item.AwayTeam}</Text>}/> */}
-      <TouchableOpacity>
-        <Text style={styles.title}>Partidos {hoy}</Text>
+        <Text selectable style={styles.title}>Partidos {hoy}</Text>
         <Text></Text>
-        <FlatList data={data} renderItem={match => <MatchItem {...match.item}/>}/>
-      </TouchableOpacity>
-      <Text>                       </Text>
-      <Text>                       </Text>
-      <Text>                       </Text>
-      <TouchableOpacity>
-      <Text style={styles.title}>Resultados {ayer}</Text>
-      <Text></Text>
-      <FlatList data={dat} renderItem={score => <ScoreItem{...score.item}/>}/>
-      </TouchableOpacity>
+        <FlatList
+          data={data}
+          renderItem={match => <MatchItem {...match.item} />}
+          
+        />
+        <Text style={styles.title}>Resultados {ayer}</Text>
+        <Text></Text>
+        <FlatList
+          data={dat}
+          renderItem={score => <ScoreItem {...score.item} />}
+        />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   center: {
-    flex: 2,
+    flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -71,13 +68,13 @@ const styles = StyleSheet.create({
     fontSize: 23,
   },
   container: {
-    flex: 1,
+    flex: 2,
     paddingTop: 22,
   },
   item: {
     padding: 10,
-    fontSize: 18,
-    height: 44,
+    fontSize: 15,
+    height: 20,
   },
 })
 

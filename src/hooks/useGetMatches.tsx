@@ -9,7 +9,7 @@ function useGetMatches() {
   const [error, setError] = useState(null);
   const date = new Date();
   let day = date.getDate();
-  let month = date.getMonth()+1;
+  let month = date.getMonth() + 1;
   let year = date.getFullYear();
   let currentDate = `${year}-${month}-${day}`;
 
