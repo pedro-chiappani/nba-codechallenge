@@ -1,4 +1,13 @@
 {
   "name": "RN",
-  "displayName": "RN"
+  "displayName": "RN",
+  "expo": {
+    "name": "NBApp",
+    "slug": "NBApp",
+    "extra": {
+      "eas": {
+        "projectId": "fa7c70e0-4880-4652-986a-a4c9def53bc5"
+      }
+    }
+  }
 }

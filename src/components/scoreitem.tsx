@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 23,
+    color:'black'
   },
 });
 export default ScoreItem;
