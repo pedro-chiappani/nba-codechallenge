@@ -6,7 +6,7 @@ import {HomeScreen} from './screens';
 import TeamsScreen from './screens/TeamsScreen';
 import PlayerListScreen from './screens/PlayerListScreen';
 import PlayerScreen from './screens/PlayerScreen';
-// import Ionicons from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const Stack = createNativeStackNavigator();
@@ -14,8 +14,22 @@ const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={{headerShown:false}}>
-      <Tab.Screen name='Casa' component={HomeScreen} />
+    <Tab.Navigator screenOptions={({route}) => ({
+      headerShown:false,
+      tabBarIcon: ({focused,color,size}) => {
+        let iconName = '';
+        switch (route.name){
+          case 'Casa':
+            iconName = focused ? 'home' : 'home-outline';
+            break;
+          case 'Equipos':
+            iconName = focused ? 'basketball' : 'basketball-outline';
+            break;
+        }
+        return <Icon name = {iconName} size={size} color={color} />
+      }
+    })}>
+      <Tab.Screen name='Casa' component={HomeScreen}/>
       <Tab.Screen name='Equipos' component={TeamsScreen}/>
     </Tab.Navigator>
     

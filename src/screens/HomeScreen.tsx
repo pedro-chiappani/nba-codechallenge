@@ -68,8 +68,9 @@ const styles = StyleSheet.create({
     fontSize: 23,
   },
   container: {
-    flex: 2,
-    paddingTop: 22,
+    flex: 1,
+    paddingTop: 15,
+    margin:10,
   },
   item: {
     padding: 10,
