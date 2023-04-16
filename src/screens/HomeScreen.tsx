@@ -41,19 +41,20 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-        <Text selectable style={styles.title}>Partidos {hoy}</Text>
-        <Text></Text>
-        <FlatList
-          data={data}
-          renderItem={match => <MatchItem {...match.item} />}
-          
-        />
-        <Text style={styles.title}>Resultados {ayer}</Text>
-        <Text></Text>
-        <FlatList
-          data={dat}
-          renderItem={score => <ScoreItem {...score.item} />}
-        />
+      <Text style={styles.title}>Resultados {ayer}</Text>
+      <Text></Text>
+      <FlatList
+        data={dat}
+        renderItem={score => <ScoreItem {...score.item} />}
+      />
+      <Text selectable style={styles.title}>
+        Partidos {hoy}
+      </Text>
+      <Text></Text>
+      <FlatList
+        data={data}
+        renderItem={match => <MatchItem {...match.item} />}
+      />
     </View>
   );
 };
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 23,
+    fontSize: 20,
     color: 'black'
   },
   container: {

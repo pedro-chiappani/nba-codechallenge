@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   title: {
-    fontSize: 23,
+    fontSize: 20,
     color:'black'
   },
 });
