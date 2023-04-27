@@ -2,29 +2,28 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 import {API_URL, API_TOKEN} from '@env';
 import {Team} from '../types/team';
-import {Player} from '../types/player';
 
 function useGetTeams() {
-  const [data, setData] = useState<Team[]>();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState(null);
+  const [dato, setDato] = useState<Team[]>([]);
+  const [loado, setLoado] = useState<boolean>(false);
+  const [erro, setErro] = useState(null);
 
   useEffect(() => {
-    setLoading(true);
+    setLoado(true);
     axios
       .get(API_URL + `/teams?key=${API_TOKEN}`)
       .then(response => {
-        setData(response.data);
+        setDato(response.data);
       })
       .catch(err => {
-        setError(err);
+        setErro(err);
       })
       .finally(() => {
-        setLoading(false);
+        setLoado(false);
       });
   }, []);
 
-  return {data, loading, error};
+  return {dato, loado, erro};
 }
 
 export default useGetTeams;

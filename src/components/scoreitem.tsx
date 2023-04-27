@@ -9,22 +9,20 @@ import Clipboard from "@react-native-clipboard/clipboard";
 
 const ScoreItem = (match: Matches) => {
   
-  const {data,loading,error} = useGetTeams();
-  const navigation = useNavigation();
-  let home = data?.filter(team => team.TeamID == match.HomeTeamID);
-  let away = data?.filter(team => team.TeamID == match.AwayTeamID);
-  const date = new Date();
-  date.setDate(date.getDate() -1)
-  let day = date.getDate();
-  let month = date.getMonth()+1;
+  const {dato,loado,erro} = useGetTeams();
+  let home = dato?.filter(team => team.TeamID == match.HomeTeamID);
+  let away = dato?.filter(team => team.TeamID == match.AwayTeamID);
+  
   let res: string;
-  if (match.HomeTeamScore > match.AwayTeamScore){
+  if ((match.HomeTeamScore != null ? match.HomeTeamScore : 0) > (match.AwayTeamScore != null ? match.AwayTeamScore : 0)){
     res = "le ganaron a los";
   }else{
     res = "perdieron contra los";
   }
 
-  let pers1 = (equipos.filter(e => e.equipo == (home?.map(a => a.Name).toString())))
+  let pers1 = equipos.filter(
+    e => e.equipo == home?.map(a => a.Name).toString(),
+  );
   let pers2 = equipos.filter(
     e => e.equipo == away?.map(a => a.Name).toString(),
   );

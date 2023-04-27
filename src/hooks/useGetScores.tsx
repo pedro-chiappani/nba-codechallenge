@@ -4,7 +4,7 @@ import {API_URL, API_TOKEN} from '@env';
 import {Matches} from '../types/match';
 
 function useGetMatches() {
-  const [dat, setDat] = useState<Matches[]>();
+  const [dat, setDat] = useState<Matches[]>([]);
   const [load, setLoad] = useState<boolean>(false);
   const [err, setErr] = useState(null);
   const date = new Date();

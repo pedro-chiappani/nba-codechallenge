@@ -1,3 +1,3 @@
-import HomeScreen from './HomeScreen';
+import ScoreScreen from './MatchScreen';
 
-export {HomeScreen};
+export {ScoreScreen};

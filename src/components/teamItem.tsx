@@ -7,6 +7,7 @@ import {HomeScreenProps} from '../types/navigation';
 
 const TeamItem = (team: Team) => {
   const navigation = useNavigation();
+  console.log(team.WikipediaLogoUrl.split(".svg")[0]+".svg")
 
   return (
     <TouchableOpacity
@@ -20,7 +21,7 @@ const TeamItem = (team: Team) => {
       }
       style={[styles.container, {backgroundColor: `#${team.SecondaryColor}`}]}>
       <SvgCssUri
-        uri={team.WikipediaLogoUrl}
+        uri={team.WikipediaLogoUrl.split(".svg")[0]+".svg"}
         width="100%"
         fill={`black`}
       />
