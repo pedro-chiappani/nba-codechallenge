@@ -76,7 +76,7 @@ const ScoreScreen = () => {
       <Text style={styles.title}>Resultados {ayer}</Text>
       <Text></Text>
       <FlatList
-        data={dat}
+        data={dat.filter(score => score.IsClosed)}
         renderItem={score => <ScoreItem {...score.item} />}
       />
       <Text></Text>

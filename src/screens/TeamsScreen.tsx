@@ -17,11 +17,11 @@ import {HomeScreenProps} from '../types/navigation';
 import {Team} from '../types/team';
 
 const TeamsScreen = () => {
-  const {data, loading, error} = useGetTeams();
+  const {dato, loado, erro} = useGetTeams();
   //console.log(data?.map(team => team.WikipediaLogoUrl));
 
   return (
-    <FlatList data={data} renderItem={team => <TeamItem {...team.item} />} />
+    <FlatList data={dato} renderItem={team => <TeamItem {...team.item} />} />
   );
 };
 
