@@ -12,7 +12,7 @@ function useGetMatches() {
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
   let currentDate = `${year}-${month}-${day}`;
-
+//${currentDate}
   useEffect(() => {
     setLoading(true);
     axios

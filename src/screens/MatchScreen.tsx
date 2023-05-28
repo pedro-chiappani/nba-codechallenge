@@ -20,6 +20,7 @@ import { Team } from '../types/team';
 
 const MatchScreen = () => {
   const {data, loading, error} = useGetMatches();
+  let matches = data.filter(m => m.Status != "NotNecessary")
   // const {dato,loado,erro} = useGetTeams();
   const [cad, setCad] = useState([""]);
   // data?.forEach(match => console.log(cadena(match, dato))); 
@@ -58,7 +59,7 @@ const MatchScreen = () => {
       </Text>
       <Text></Text>
       <FlatList
-        data={data}
+        data={matches}
         renderItem={match => <MatchItem {...match.item}/>}
       />
       <TouchableOpacity onPress={copyToClipboard}>

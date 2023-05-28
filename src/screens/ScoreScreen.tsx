@@ -81,10 +81,10 @@ const ScoreScreen = () => {
       />
       <Text></Text>
       </View>
-      <Button title='Clean' onPress={cleanCad}/>
+      {/* <Button title='Clean' onPress={cleanCad}/>
       <TouchableOpacity onPress={copyToClipboard}>
          <Text style={styles.title}>{cad}</Text>
-       </TouchableOpacity>
+       </TouchableOpacity> */}
     </View>
     //   <Text selectable style={styles.title}>
     //     Partidos {hoy}
