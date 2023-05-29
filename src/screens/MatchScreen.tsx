@@ -45,17 +45,18 @@ const MatchScreen = () => {
     // setCad([...cad, text + "\n"])
     setCopiedText(text);
   };
-
-  const fecha = new Date();
-  let hoy = fecha.getDate() + "/" + (fecha.getMonth() +1);
-  fecha.setDate(fecha.getDate() -1)
-  let ayer = fecha.getDate() + "/" + (fecha.getMonth()+1);
-
+  let fechaPartidos;
+  if (matches.length > 0){
+    let f = matches[0]["Day"].toString().split("T")[0].split("-")
+    fechaPartidos ="Partidos "+(f[2]+"/" + f[1])
+  }else{
+    fechaPartidos = "No hay partidos hoy"
+  }
 
   return (
     <View style={styles.container}>
       <Text selectable style={styles.title}>
-        Partidos {hoy}
+        {fechaPartidos}
       </Text>
       <Text></Text>
       <FlatList

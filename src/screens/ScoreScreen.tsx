@@ -27,8 +27,14 @@ const ScoreScreen = () => {
 //   const [data, setString] = useClipboard();
   // data?.forEach(match => console.log(cadena(match, dato))); 
   const navigation = useNavigation<HomeScreenProps>();
-  
-
+  const scores = dat.filter(score => score.IsClosed)
+  let fechaRes;
+  if (scores.length > 0){
+    let f = scores[0]["Day"].toString().split("T")[0].split("-")
+    fechaRes ="Resultados "+(f[2]+"/" + f[1])
+  }else{
+    fechaRes = "No hay resultados para mostrar"
+  }
   const [coppiedText, setCopiedText] = useState('');
 //   console.log("clipboard " + data)
   console.log("cad: " + cad)
@@ -62,21 +68,15 @@ const ScoreScreen = () => {
     console.log("cad " + cad)
   }
 
-  
-  const fecha = new Date();
-  fecha.setDate(fecha.getDate() -1)
-  let ayer = fecha.getDate() + "/" + (fecha.getMonth()+1);
-
-
   return (
     <View style={[styles.container, {
         flexDirection:'column'
     }]}>
         <View style={{}}>
-      <Text style={styles.title}>Resultados {ayer}</Text>
+      <Text style={styles.title}>{fechaRes}</Text>
       <Text></Text>
       <FlatList
-        data={dat.filter(score => score.IsClosed)}
+        data={scores}
         renderItem={score => <ScoreItem {...score.item} />}
       />
       <Text></Text>
