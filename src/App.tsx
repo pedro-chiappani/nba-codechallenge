@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TeamsScreen from './screens/TeamsScreen';
@@ -7,7 +7,9 @@ import PlayerListScreen from './screens/PlayerListScreen';
 import PlayerScreen from './screens/PlayerScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MatchScreen from './screens/MatchScreen';
+import IconScreen from './screens/IconScreen';
 import ScoreScreen from './screens/ScoreScreen';
+import { Button } from 'react-native';
 
 
 const Stack = createNativeStackNavigator();
@@ -41,11 +43,27 @@ const TabNavigator = () => {
   );
 };
 
+// const navigatio = useNavigation();
+
 const App = () => (
   <NavigationContainer>
     
     <Stack.Navigator>
-      <Stack.Screen name="NBApp" component={TabNavigator} />
+      <Stack.Screen name="NBApp" component={TabNavigator}
+      options={({navigation}) => ({
+        headerRight: () => (
+          <Button
+              onPress={() => navigation.navigate('Icon')}
+              title="Info"
+              color="blue"
+            />
+        )
+      })}
+      />
+      <Stack.Screen
+        name="Icon"
+        component={IconScreen}
+      />
       <Stack.Screen
         name="Teams"
         component={TeamsScreen}
