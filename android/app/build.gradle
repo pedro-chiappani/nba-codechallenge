@@ -223,14 +223,7 @@ android {
             include (*reactNativeArchitectures())
         }
     }
-    signingConfigs {
-    release {
-        storeFile file('your_key_name.keystore')
-      storePassword 'Pepe.1011'
-      keyAlias 'your_key_alias'
-      keyPassword 'Pepe.1011'
-    }
-  }
+    
     
     buildTypes {
         debug {
