@@ -39,6 +39,6 @@ ___
     - [ ] Tapping on a player should open the player detail screen.
     - [ ] Updating the search box input should update the player list.
 
-## Examples
+## Exampless
 <img src="https://cdn.dribbble.com/users/2539530/screenshots/8088320/media/cb83c6d48b6eae3d1c22190e662a77ee.jpg?compress=1&resize=400x300" alt="drawing" style="width:400px;"/>
 <img src="https://cdn.dribbble.com/users/485682/screenshots/17474405/media/a4e888a7b3e45091327c3b2558922a15.jpg?compress=1&resize=400x300&vertical=top" alt="drawing" style="width:400px;"/>
