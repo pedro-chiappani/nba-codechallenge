@@ -9,7 +9,7 @@ export const equipos = [
     persona: 'Agus',
   },
   {
-    equipo: 'Hawks',
+    equipo: 'Clippers',
     persona: 'Nachito',
   },
   {
@@ -17,7 +17,7 @@ export const equipos = [
     persona: 'Ayr',
   },
   {
-    equipo: 'Mavericks',
+    equipo: 'Raptors',
     persona: 'Lucas',
   },
   {
@@ -25,8 +25,8 @@ export const equipos = [
     persona: 'Yulo',
   },
   {
-    equipo: '76ers',
-    persona: 'Santino',
+    equipo: 'Rockets',
+    persona: 'Pipi',
   },
   {
     equipo: 'Heat',
@@ -35,10 +35,6 @@ export const equipos = [
   {
     equipo: 'Bucks',
     persona: 'Pepe',
-  },
-  {
-    equipo: 'Pelicans',
-    persona: 'Gonza',
   },
   {
     equipo: 'Cavaliers',
@@ -61,11 +57,11 @@ export const equipos = [
     persona: 'Pani',
   },
   {
-    equipo: 'Suns',
+    equipo: 'Knicks',
     persona: 'Nico',
   },
   {
-    equipo: 'Clippers',
+    equipo: 'Suns',
     persona: 'San',
   },
   {
@@ -73,7 +69,7 @@ export const equipos = [
     persona: 'Joa',
   },
   {
-    equipo: 'Nets',
+    equipo: 'Mavericks',
     persona: 'Tom DC',
   },
   {
@@ -87,9 +83,5 @@ export const equipos = [
   {
     equipo: 'Kings',
     persona: 'Lo',
-  },
-  {
-    equipo: 'Knicks',
-    persona: 'Qui',
   },
 ];
