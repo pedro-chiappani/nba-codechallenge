@@ -139,8 +139,8 @@ android {
         applicationId "com.resulnba"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {
@@ -223,6 +223,14 @@ android {
             include (*reactNativeArchitectures())
         }
     }
+    signingConfigs{
+         release {
+        storeFile file('your_key_name.keystore')
+      storePassword 'Pepe.1011'
+      keyAlias 'your_key_alias'
+      keyPassword 'Pepe.1011'
+    }
+    }
     
     
     buildTypes {
@@ -232,7 +240,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
