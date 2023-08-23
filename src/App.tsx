@@ -8,10 +8,12 @@ import PlayerScreen from './screens/PlayerScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MatchScreen from './screens/MatchScreen';
 import ScoreScreen from './screens/ScoreScreen';
+import { RootStackParamList } from './types/navigation';
 
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
+
 
 const TabNavigator = () => {
   return (
