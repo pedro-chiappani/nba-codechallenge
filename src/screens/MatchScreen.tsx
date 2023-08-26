@@ -10,7 +10,7 @@ import {
 import useGetMatches from '../hooks/useGetMatches';
 import {HomeScreenProps} from '../types/navigation';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
 import MatchItem from '../components/matchitem';
 import ScoreItem from '../components/scoreitem';
 import useGetScores from '../hooks/useGetScores';
@@ -54,6 +54,7 @@ const MatchScreen = () => {
   }
 
   return (
+    <GestureHandlerRootView>
     <View style={styles.container}>
       <Text selectable style={styles.title}>
         {fechaPartidos}
@@ -67,6 +68,7 @@ const MatchScreen = () => {
         <Text style={styles.title}>{cad}</Text>
       </TouchableOpacity>
     </View>
+    </GestureHandlerRootView>
   );
 };
 

@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SvgCssUri} from 'react-native-svg';
 import TeamItem from '../components/teamItem';
 import useGetTeams from '../hooks/useGetTeams';
@@ -21,7 +21,9 @@ const TeamsScreen = () => {
   //console.log(data?.map(team => team.WikipediaLogoUrl));
 
   return (
+    <GestureHandlerRootView>
     <FlatList data={dato} renderItem={team => <TeamItem {...team.item} />} />
+    </GestureHandlerRootView>
   );
 };
 
