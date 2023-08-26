@@ -1,220 +1,220 @@
-import blazers from './images/blazers.png'
-import bucks from './images/bucks.png'
-import bulls from './images/bulls.png'
-import cavaliers from './images/cavaliers.png'
-import celtics from './images/celtics.png'
-import clippers from './images/clippers.png'
-import grizzlies from './images/grizzlies.png'
-import hawks from './images/hawks.png'
-import heat from './images/heat.png'
-import hornets from './images/hornets.png'
-import jazz from './images/jazz.png'
-import kings from './images/kings.png'
-import knicks from './images/knicks.png'
-import lakers from './images/lakers.png'
-import magic from './images/magic.png'
-import mavericks from './images/mavericks.png'
-import nets from './images/nets.png'
-import nuggets from './images/nuggets.png'
-import pacers from './images/pacers.png'
-import pelicans from './images/pelicans.png'
-import pistons from './images/pistons.png'
-import raptors from './images/raptors.png'
-import rockets from './images/rockets.png'
-import sixers from './images/sixers.png'
-import spurs from './images/spurs.png'
-import suns from './images/suns.png'
-import thunder from './images/thunder.png'
-import timberwolves from './images/timberwolves.png'
-import warriors from './images/warriors.png'
-import wizards from './images/wizards.png'
-import ic_launcher from './images/ic_launcher.png'
+// import blazers from './images/blazers.png'
+// import bucks from './images/bucks.png'
+// import bulls from './images/bulls.png'
+// import cavaliers from './images/cavaliers.png'
+// import celtics from './images/celtics.png'
+// import clippers from './images/clippers.png'
+// import grizzlies from './images/grizzlies.png'
+// import hawks from './images/hawks.png'
+// import heat from './images/heat.png'
+// import hornets from './images/hornets.png'
+// import jazz from './images/jazz.png'
+// import kings from './images/kings.png'
+// import knicks from './images/knicks.png'
+// import lakers from './images/lakers.png'
+// import magic from './images/magic.png'
+// import mavericks from './images/mavericks.png'
+// import nets from './images/nets.png'
+// import nuggets from './images/nuggets.png'
+// import pacers from './images/pacers.png'
+// import pelicans from './images/pelicans.png'
+// import pistons from './images/pistons.png'
+// import raptors from './images/raptors.png'
+// import rockets from './images/rockets.png'
+// import sixers from './images/sixers.png'
+// import spurs from './images/spurs.png'
+// import suns from './images/suns.png'
+// import thunder from './images/thunder.png'
+// import timberwolves from './images/timberwolves.png'
+// import warriors from './images/warriors.png'
+// import wizards from './images/wizards.png'
+// import ic_launcher from './images/ic_launcher.png'
 
 export const appIconList = [
     {
         id:1,
-        label: 'blazers',
-        img: blazers,
+        label: 'Blazers',
+        img: require(`./images/blazers.png`),
         bg: '#FFFFFF'
       },
       {
         id:2,
-        label: 'bucks',
-        img: bucks,
+        label: 'Bucks',
+        img: require(`./images/bucks.png`),
         bg: '#FFFFFF'
       },
       {
         id:3,
-        label: 'bulls',
-        img: bulls,
+        label: 'Bulls',
+        img: require(`./images/bulls.png`),
         bg: '#FFFFFF'
       },
       {
         id:4,
-        label: 'cavaliers',
-        img: cavaliers,
+        label: 'Cavaliers',
+        img: require(`./images/cavaliers.png`),
         bg: '#FFFFFF'
       },
       {
         id:5,
-        label: 'celtics',
-        img: celtics,
+        label: 'Celtics',
+        img: require(`./images/celtics.png`),
         bg: '#FFFFFF'
       },
       {
         id:6,
-        label: 'clippers',
-        img: clippers,
+        label: 'Clippers',
+        img: require(`./images/clippers.png`),
         bg: '#FFFFFF'
       },
       {
         id:7,
-        label: 'grizzlies',
-        img: grizzlies,
+        label: 'Grizzlies',
+        img: require(`./images/grizzlies.png`),
         bg: '#FFFFFF'
       },
       {
         id:8,
-        label: 'hawks',
-        img: hawks,
+        label: 'Hawks',
+        img: require(`./images/hawks.png`),
         bg: '#FFFFFF'
       },
       {
         id:9,
-        label: 'heat',
-        img: heat,
+        label: 'Heat',
+        img: require(`./images/heat.png`),
         bg: '#FFFFFF'
       },
       {
         id:10,
-        label: 'hornets',
-        img: hornets,
+        label: 'Hornets',
+        img: require(`./images/hornets.png`),
         bg: '#FFFFFF'
       },
       {
         id:11,
-        label: 'jazz',
-        img: jazz,
+        label: 'Jazz',
+        img: require(`./images/jazz.png`),
         bg: '#FFFFFF'
       },
       {
         id:12,
-        label: 'kings',
-        img: kings,
+        label: 'Kings',
+        img: require(`./images/kings.png`),
         bg: '#FFFFFF'
       },
       {
         id:13,
-        label: 'knicks',
-        img: knicks,
+        label: 'Knicks',
+        img: require(`./images/knicks.png`),
         bg: '#FFFFFF'
       },
       {
         id:14,
-        label: 'lakers',
-        img: lakers,
+        label: 'Lakers',
+        img: require(`./images/lakers.png`),
         bg: '#FFFFFF'
       },
       {
         id:15,
-        label: 'magic',
-        img: magic,
+        label: 'Magic',
+        img: require(`./images/magic.png`),
         bg: '#FFFFFF'
       },
       {
         id:16,
-        label: 'mavericks',
-        img: mavericks,
+        label: 'Mavericks',
+        img: require(`./images/mavericks.png`),
         bg: '#FFFFFF'
       },
       {
         id:17,
-        label: 'nets',
-        img: nets,
+        label: 'Nets',
+        img: require(`./images/nets.png`),
         bg: '#FFFFFF'
       },
       {
         id:18,
-        label: 'nuggets',
-        img: nuggets,
+        label: 'Nuggets',
+        img: require(`./images/nuggets.png`),
         bg: '#FFFFFF'
       },
       {
         id:19,
-        label: 'pacers',
-        img: pacers,
+        label: 'Pacers',
+        img: require(`./images/pacers.png`),
         bg: '#FFFFFF'
       },
       {
         id:20,
-        label: 'pelicans',
-        img: pelicans,
+        label: 'Pelicans',
+        img: require(`./images/pelicans.png`),
         bg: '#FFFFFF'
       },
       {
         id:21,
-        label: 'pistons',
-        img: pistons,
+        label: 'Pistons',
+        img: require(`./images/pistons.png`),
         bg: '#FFFFFF'
       },
       {
         id:22,
-        label: 'raptors',
-        img: raptors,
+        label: 'Raptors',
+        img: require(`./images/raptors.png`),
         bg: '#FFFFFF'
       },
       {
         id:23,
-        label: 'rockets',
-        img: rockets,
+        label: 'Rockets',
+        img: require(`./images/rockets.png`),
         bg: '#FFFFFF'
       },
       {
         id:24,
-        label: 'sixers',
-        img: sixers,
+        label: 'Sixers',
+        img: require(`./images/sixers.png`),
         bg: '#FFFFFF'
       },
       {
         id:25,
-        label: 'spurs',
-        img: spurs,
+        label: 'Spurs',
+        img: require(`./images/spurs.png`),
         bg: '#FFFFFF'
       },
       {
         id:26,
-        label: 'suns',
-        img: suns,
+        label: 'Suns',
+        img: require(`./images/suns.png`),
         bg: '#FFFFFF'
       },
       {
         id:27,
-        label: 'thunder',
-        img: thunder,
+        label: 'Thunder',
+        img: require(`./images/thunder.png`),
         bg: '#FFFFFF'
       },
       {
         id:28,
-        label: 'timberwolves',
-        img: timberwolves,
+        label: 'Timberwolves',
+        img: require(`./images/timberwolves.png`),
         bg: '#FFFFFF'
       },
       {
         id:29,
-        label: 'warriors',
-        img: warriors,
+        label: 'Warriors',
+        img: require(`./images/warriors.png`),
         bg: '#FFFFFF'
       },
       {
         id:30,
-        label: 'wizards',
-        img: wizards,
+        label: 'Wizards',
+        img: require(`./images/wizards.png`),
         bg: '#FFFFFF'
       },
       {
         id:31,
-        label: 'ic_launcher',
-        img: ic_launcher,
+        label: 'Default',
+        img: require(`./images/iclauncher.png`),
         bg: '#FFFFFF'
       },
     ]

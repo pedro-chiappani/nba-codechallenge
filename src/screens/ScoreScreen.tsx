@@ -11,7 +11,7 @@ import {
 import useGetMatches from '../hooks/useGetMatches';
 import {HomeScreenProps} from '../types/navigation';
 import Clipboard, { useClipboard } from '@react-native-clipboard/clipboard';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
 import MatchItem from '../components/matchitem';
 import ScoreItem from '../components/scoreitem';
 import useGetScores from '../hooks/useGetScores';
@@ -69,6 +69,7 @@ const ScoreScreen = () => {
   }
 
   return (
+    <GestureHandlerRootView>
     <View style={[styles.container, {
         flexDirection:'column'
     }]}>
@@ -86,6 +87,7 @@ const ScoreScreen = () => {
          <Text style={styles.title}>{cad}</Text>
        </TouchableOpacity> */}
     </View>
+    </GestureHandlerRootView>
     //   <Text selectable style={styles.title}>
     //     Partidos {hoy}
     //   </Text>
@@ -99,6 +101,7 @@ const ScoreScreen = () => {
     //   </TouchableOpacity>
     // </View>
   );
+  
 };
 
 const styles = StyleSheet.create({

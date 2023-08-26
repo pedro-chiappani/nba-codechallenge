@@ -16,6 +16,7 @@ export type RootStackParamList = {
     teamName: string;
   };
   Player: {player: Player; primary: string; secondary: string};
+  NBApp: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

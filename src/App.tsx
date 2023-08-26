@@ -10,9 +10,10 @@ import MatchScreen from './screens/MatchScreen';
 import IconScreen from './screens/IconScreen';
 import ScoreScreen from './screens/ScoreScreen';
 import { Button } from 'react-native';
+import { RootStackParamList } from './types/navigation';
 
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
@@ -55,7 +56,7 @@ const App = () => (
           <Button
               onPress={() => navigation.navigate('Icon')}
               title="Info"
-              color="blue"
+              color="red"
             />
         )
       })}
