@@ -14,16 +14,13 @@ import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
 import MatchItem from '../components/matchitem';
 import ScoreItem from '../components/scoreitem';
 import useGetScores from '../hooks/useGetScores';
-// import {CacheManager} from 'react-native-cached-image';
 import useGetTeams from '../hooks/useGetTeams';
 import { Team } from '../types/team';
 
 const MatchScreen = () => {
   const {data, loading, error} = useGetMatches();
   let matches = data.filter(m => m.Status != "NotNecessary")
-  // const {dato,loado,erro} = useGetTeams();
-  const [cad, setCad] = useState([""]);
-  // data?.forEach(match => console.log(cadena(match, dato))); 
+  const [cad, setCad] = useState([""]); 
   const navigation = useNavigation<HomeScreenProps>();
   
 
@@ -54,21 +51,21 @@ const MatchScreen = () => {
   }
 
   return (
-    <GestureHandlerRootView>
     <View style={styles.container}>
       <Text selectable style={styles.title}>
         {fechaPartidos}
       </Text>
       <Text></Text>
+      <GestureHandlerRootView>
       <FlatList
         data={matches}
         renderItem={match => <MatchItem {...match.item}/>}
       />
+      </GestureHandlerRootView>
       <TouchableOpacity onPress={copyToClipboard}>
         <Text style={styles.title}>{cad}</Text>
       </TouchableOpacity>
     </View>
-    </GestureHandlerRootView>
   );
 };
 

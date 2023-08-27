@@ -10,7 +10,7 @@ import MatchScreen from './screens/MatchScreen';
 import IconScreen from './screens/IconScreen';
 import ScoreScreen from './screens/ScoreScreen';
 import { RootStackParamList } from './types/navigation';
-import { Button } from 'react-native';
+import { Button, StyleSheet, TouchableHighlight, TouchableOpacity } from 'react-native';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -54,11 +54,14 @@ const App = () => (
       <Stack.Screen name="NBApp" component={TabNavigator}
       options={({navigation}) => ({
         headerRight: () => (
-          <Button
-              onPress={() => navigation.navigate('Icon')}
-              title="Icon"
-              color="blue"
-            />
+          <TouchableOpacity onPress={() => navigation.navigate('Icon')}>
+            <Icon name="settings-sharp" size={30}></Icon>
+          </TouchableOpacity>
+          // <Button
+          //     onPress={() => navigation.navigate('Icon')}
+          //     title="Icon"
+          //     color="blue"
+          //   />
         )
       })}
       />
@@ -110,5 +113,11 @@ const App = () => (
     </Stack.Navigator>
   </NavigationContainer>
 );
+
+const styles = StyleSheet.create({
+  icon:{
+    resizeMode: 'contain'
+  }
+})
 
 export default App;

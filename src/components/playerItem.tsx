@@ -20,7 +20,6 @@ interface PlayerItemProps {
 
 const PlayerItem = ({player, primary, secondary, team}: PlayerItemProps) => {
   const navigation = useNavigation();
-
   return (
     <TouchableOpacity
       style={[

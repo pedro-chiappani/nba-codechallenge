@@ -33,16 +33,7 @@ const cadena = (match: Matches) => {
     } else {
       res = ' perdieron contra los ';
     }
-    return (
-      'Los ' +
-      pers1 +
-      res +
-      pers2 +
-      ' ' +
-      match.HomeTeamScore +
-      '-' +
-      match.AwayTeamScore
-    );
+    return (`Los ${pers1} ${res} ${pers2} ${match.HomeTeamScore}-${match.AwayTeamScore}`);
   } else {
     let hora =
       match.DateTimeUTC != null

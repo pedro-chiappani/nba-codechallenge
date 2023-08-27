@@ -22,10 +22,7 @@ import cadena from '../components/generateStrigns';
 
 const ScoreScreen = () => {
   const {dat, load, err} = useGetScores();
-  // const {dato,loado,erro} = useGetTeams();
   const [cad, setCad] = useState([""]);
-//   const [data, setString] = useClipboard();
-  // data?.forEach(match => console.log(cadena(match, dato))); 
   const navigation = useNavigation<HomeScreenProps>();
   const scores = dat.filter(score => score.IsClosed)
   let fechaRes;
@@ -37,7 +34,7 @@ const ScoreScreen = () => {
   }
   const [coppiedText, setCopiedText] = useState('');
 //   console.log("clipboard " + data)
-  console.log("cad: " + cad)
+  // console.log("cad: " + cad)
   
   const copyToClipboard = () => {
     Clipboard.setString(cad.toString());
@@ -48,7 +45,7 @@ const ScoreScreen = () => {
     // setString("")
     // console.log("changed!")};
     if (Clipboard.hasString()){
-        console.log("Tiene: " + text)
+        // console.log("Tiene: " + text)
         }
     }
   Clipboard.addListener(listener);
@@ -63,16 +60,16 @@ const ScoreScreen = () => {
     // setString("");
     let x = cad?.filter(c => c===null);
     setCad(x)
-    console.log(Clipboard.hasString())
+    // console.log(Clipboard.hasString())
     // console.log("clipboard " + data)
-    console.log("cad " + cad)
+    // console.log("cad " + cad)
   }
 
   return (
-    <GestureHandlerRootView>
     <View style={[styles.container, {
         flexDirection:'column'
     }]}>
+      <GestureHandlerRootView>
         <View style={{}}>
       <Text style={styles.title}>{fechaRes}</Text>
       <Text></Text>
@@ -82,12 +79,12 @@ const ScoreScreen = () => {
       />
       <Text></Text>
       </View>
+      </GestureHandlerRootView>
       {/* <Button title='Clean' onPress={cleanCad}/>
       <TouchableOpacity onPress={copyToClipboard}>
          <Text style={styles.title}>{cad}</Text>
        </TouchableOpacity> */}
     </View>
-    </GestureHandlerRootView>
     //   <Text selectable style={styles.title}>
     //     Partidos {hoy}
     //   </Text>
