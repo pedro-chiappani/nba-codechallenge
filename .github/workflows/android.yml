@@ -29,6 +29,14 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Decode Keystore
+         env:
+           ENCODED_STRING: ${{ secrets.SIGNING_KEY }}
+           SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+ 
+         run: |
+           echo $SIGNING_KEY > keystore-b64.txt
+           base64 -d keystore-b64.txt > $SIGNING_KEY_STORE_PATH
       - name: Build Android Release
         run: |
           cd android && ./gradlew :app:bundleRelease
@@ -53,3 +61,12 @@ jobs:
           track: internal
           status: draft
           releaseFiles: "android/app/build/outputs/bundle/release/app-release.aab"
+
+      - name: Create Github Release
+         uses: softprops/action-gh-release@v1
+         with:
+           generate_release_notes: true
+           prerelease: true
+           files: |
+             android/app/build/outputs/apk/release/app-release.apk
+             android/app/build/outputs/bundle/release/app-release.aab
