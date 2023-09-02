@@ -31,8 +31,8 @@ jobs:
 
       - name: Decode Keystore
         env: 
-          ENCODED_STRING: ${{secrets.SIGNING_KEY}}
-          SIGNING_KEY_STORE_PATH: ${{secrets.SIGNING_KEY_STORE_PATH}}  
+          ENCODED_STRING: ${{ secrets.SIGNING_KEY }}
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}  
         run: |
            echo ENCODED_STRING > keystore-b64.txt
            base64 -d keystore-b64.txt > SIGNING_KEY_STORE_PATH
