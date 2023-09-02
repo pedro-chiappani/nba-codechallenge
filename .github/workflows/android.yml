@@ -29,10 +29,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      # - name: Decode Keystore
-      #    run: |
-      #      echo ${{secrets.SIGNING_KEY }}> keystore-b64.txt
-      #      base64 -d keystore-b64.txt > ${{ secrets.SIGNING_KEY_STORE_PATH }}
+      - name: Decode Keystore
+        run: |
+           echo ${{secrets.SIGNING_KEY }} > keystore-b64.txt
+           base64 -d keystore-b64.txt > ${{ secrets.SIGNING_KEY_STORE_PATH }}
 
       - name: Build Android Release
         run: |
