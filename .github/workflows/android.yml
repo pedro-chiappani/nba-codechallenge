@@ -59,11 +59,3 @@ jobs:
           status: draft
           releaseFiles: "android/app/build/outputs/bundle/release/app-release.aab"
 
-      - name: Create Github Release
-         uses: softprops/action-gh-release@v1
-         with:
-           generate_release_notes: true
-           prerelease: true
-           files: |
-             android/app/build/outputs/apk/release/app-release.apk
-             android/app/build/outputs/bundle/release/app-release.aab
