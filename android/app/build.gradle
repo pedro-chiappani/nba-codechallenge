@@ -239,7 +239,7 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile file("your_key_name.keystore")
+            storeFile file("keystore.jks")
             storePassword System.getenv("KEY_STORE_PASSWORD")
             keyAlias System.getenv("ALIAS")
             keyPassword System.getenv("KEY_PASSWORD")
