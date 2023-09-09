@@ -29,6 +29,20 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Configure Keystore
+        run: |
+          echo "$ANDROID_KEYSTORE_FILE" > keystore.jks.b64
+          base64 -d -i keystore.jks.b64 > android/app/key.keystore
+          echo "storeFile=key.keystore" >> android/keystore.properties
+          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> android/keystore.properties
+          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> android/keystore.properties
+          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> android/keystore.properties
+        env:
+          ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.ALIAS }}
+          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+
       - name: Build Android Release
         run: |
           cd android && ./gradlew :app:bundleRelease
@@ -38,7 +52,7 @@ jobs:
         id: sign_app
         with:
           releaseDirectory: android/app/build/outputs/bundle/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          signingKeyBase64: ${{ secrets.ANDROID_KEYSTORE_FILE }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
@@ -53,3 +67,4 @@ jobs:
           track: internal
           status: draft
           releaseFiles: "android/app/build/outputs/bundle/release/app-release.aab"
+
