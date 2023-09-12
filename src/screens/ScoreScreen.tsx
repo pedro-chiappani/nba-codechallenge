@@ -8,17 +8,11 @@ import {
   SafeAreaView,
   Button,
 } from 'react-native';
-import useGetMatches from '../hooks/useGetMatches';
 import {HomeScreenProps} from '../types/navigation';
 import Clipboard, { useClipboard } from '@react-native-clipboard/clipboard';
 import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
-import MatchItem from '../components/matchitem';
 import ScoreItem from '../components/scoreitem';
 import useGetScores from '../hooks/useGetScores';
-// import {CacheManager} from 'react-native-cached-image';
-import useGetTeams from '../hooks/useGetTeams';
-import { Team } from '../types/team';
-import cadena from '../components/generateStrigns';
 
 const ScoreScreen = () => {
   const {dat, load, err} = useGetScores();

@@ -55,10 +55,14 @@ const App = () => (
       <Stack.Screen name="NBApp" component={TabNavigator}
       options={({navigation}) => ({
         headerRight: () => (
-          <Button
-              onPress={() => navigation.navigate('Icon')}
-              title="Icon"
-            />
+          // <Button
+          //     onPress={() => navigation.navigate('Icon')}
+          //     title="Icon"
+          //   />
+          <TouchableOpacity  onPress={() => navigation.navigate('Icon')}>
+            <Icon name='settings' size={30} color={'grey'} onPress={() =>
+            navigation.navigate('Icon')}></Icon>
+          </TouchableOpacity>
         )
       })}
       />
