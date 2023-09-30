@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SvgCssUri} from 'react-native-svg';
+import { equipos } from '../hooks/equipos';
 import TeamItem from '../components/teamItem';
 import useGetTeams from '../hooks/useGetTeams';
 import {HomeScreenProps} from '../types/navigation';
@@ -23,11 +24,13 @@ const TeamsScreen = () => {
   const navigation = useNavigation();
 
   const renderCell = (team: Team, index: number) => {
-    const whites = ['Jazz', 'Heat', 'Rockets', ]
+    const secondary = ['Heat', 'Rockets', 'Nets']
+    const whites =['Spurs']
     let uri = team.WikipediaLogoUrl;
     if (uri.includes("Cleveland")){
       uri = "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cleveland_Cavaliers_logo.svg"
     }
+    const pers = equipos.find(e => e.equipo == team.Name)
     
     return (
       <TouchableOpacity
@@ -36,15 +39,15 @@ const TeamsScreen = () => {
             team: team.Key,
             primary: team.PrimaryColor,
             secondary: team.SecondaryColor,
-            teamName: team.Name,
+            teamName: `${team.Name}  ${pers ? '(' + pers.persona + ')' : ''}`,
           })
         }
-        style={[styles.container, {backgroundColor: `#${team.PrimaryColor}`}]}>
+        style={[styles.container, {backgroundColor: secondary.includes(team.Name)?`#${team.SecondaryColor}`:`#${team.PrimaryColor}`}]}>
         <SvgCssUri
           uri={uri}
           width={"100%"}
           height={"100%"}
-          fill={whites.includes(team.Name)?'white':'black'}
+          fill={'black'}
         />
       </TouchableOpacity>
     );
@@ -79,7 +82,6 @@ const styles = StyleSheet.create({
     marginTop: 6,
     marginHorizontal: 6,
     borderRadius: 8,
-    backgroundColor: 'white',
     shadowColor: '#171717',
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
