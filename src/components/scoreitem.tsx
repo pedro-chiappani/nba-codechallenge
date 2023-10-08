@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   title: {
-    margin: 10,
-    fontSize: 20,
+    marginBottom: 10,
+    fontSize: 17,
     color:'black'
   },
 });
