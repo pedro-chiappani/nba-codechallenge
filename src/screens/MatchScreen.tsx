@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
+  RefreshControl,
 } from 'react-native';
 import useGetMatches from '../hooks/useGetMatches';
 import {HomeScreenProps} from '../types/navigation';
@@ -19,6 +20,7 @@ import { Team } from '../types/team';
 
 const MatchScreen = () => {
   const {data, loading, error} = useGetMatches();
+  const [refreshing, setRefreshing] = useState(false);
   let matches = data.filter(m => m.Status != "NotNecessary")
   const [cad, setCad] = useState([""]); 
   const navigation = useNavigation<HomeScreenProps>();
@@ -26,7 +28,13 @@ const MatchScreen = () => {
 
   const [coppiedText, setCopiedText] = useState('');
   
-  
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   const copyToClipboard = () => {
     Clipboard.setString(cad.toString());
   };
@@ -58,6 +66,7 @@ const MatchScreen = () => {
       <Text></Text>
       <GestureHandlerRootView>
       <FlatList
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
         data={matches.filter(match => match.Status != 'Canceled')}
         renderItem={match => <MatchItem {...match.item}/>}
       />

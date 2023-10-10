@@ -7,6 +7,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Button,
+  RefreshControl,
 } from 'react-native';
 import {HomeScreenProps} from '../types/navigation';
 import Clipboard, { useClipboard } from '@react-native-clipboard/clipboard';
@@ -17,6 +18,7 @@ import useGetScores from '../hooks/useGetScores';
 const ScoreScreen = () => {
   const {dat, load, err} = useGetScores();
   const [cad, setCad] = useState([""]);
+  const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation<HomeScreenProps>();
   const scores = dat.filter(score => score.IsClosed)
   let fechaRes;
@@ -26,6 +28,14 @@ const ScoreScreen = () => {
   }else{
     fechaRes = "No hay resultados para mostrar"
   }
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   const [coppiedText, setCopiedText] = useState('');
 //   console.log("clipboard " + data)
   // console.log("cad: " + cad)
@@ -68,6 +78,7 @@ const ScoreScreen = () => {
       <Text style={styles.title}>{fechaRes}</Text>
       <Text></Text>
       <FlatList
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
         data={scores}
         renderItem={score => <ScoreItem {...score.item} />}
       />
