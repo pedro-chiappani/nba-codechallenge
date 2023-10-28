@@ -11,8 +11,8 @@ function useGetMatches() {
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
-  // let currentDate = `${year}-${month}-${day}`;
-  let currentDate = "2023-10-27"
+  let currentDate = `${year}-${month}-${day}`;
+  // let currentDate = "2023-10-27"
 //${currentDate}
   useEffect(() => {
     setLoading(true);
