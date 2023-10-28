@@ -58,7 +58,7 @@ const cadena = (match: Matches) => {
       } else {
         res = 'perdieron contra los';
       }
-      return `Los ${pers2} ${res} ${pers1} ${match.HomeTeamScore}-${match.AwayTeamScore}`;
+      return `Los ${pers2} ${res} ${pers1} ${match.AwayTeamScore}-${match.HomeTeamScore}`;
     }
   }
   // genera string de hora del partido 
