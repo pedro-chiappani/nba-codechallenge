@@ -2,7 +2,6 @@ package com.rn;
 
 import android.app.Application;
 import android.content.Context;
-import com.facebook.react.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
@@ -42,7 +41,7 @@ public class MainApplication extends Application implements ReactApplication {
 
   @Override
   public ReactNativeHost getReactNativeHost() {
-    if (BuildConfig.IS_INTERNAL_BUILD) {
+    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       return mNewArchitectureNativeHost;
     } else {
       return mReactNativeHost;
@@ -53,7 +52,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     // If you opted-in for the New Architecture, we enable the TurboModule system
-    ReactFeatureFlags.useTurboModules = BuildConfig.IS_INTERNAL_BUILD;
+    ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }

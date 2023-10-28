@@ -19,7 +19,8 @@ import { Team } from '../types/team';
 
 const MatchScreen = () => {
   const {data, loading, error} = useGetMatches();
-  let matches = data.filter(m => m.Status != "NotNecessary")
+  let matches = data.filter(m => (m.Status != ("NotNecessary" || "Canceled")))
+  let matchesFinished = matches.filter(m => m.IsClosed)
   const [cad, setCad] = useState([""]); 
   const navigation = useNavigation<HomeScreenProps>();
   
@@ -58,7 +59,11 @@ const MatchScreen = () => {
       <Text></Text>
       <GestureHandlerRootView>
       <FlatList
-        data={matches.filter(match => match.Status != 'Canceled')}
+        data={matches}
+        renderItem={match => <MatchItem {...match.item}/>}
+      />
+      <FlatList
+        data={matchesFinished}
         renderItem={match => <MatchItem {...match.item}/>}
       />
       </GestureHandlerRootView>

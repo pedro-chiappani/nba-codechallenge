@@ -65,3 +65,4 @@ keystore.properties
 #Vscode
 
 .vscode/
+android/app/debug.keystore
