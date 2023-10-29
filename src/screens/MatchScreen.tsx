@@ -59,9 +59,10 @@ const MatchScreen = () => {
       <Text></Text>
       <GestureHandlerRootView>
       <FlatList
-        data={matches}
+        data={matches.filter(m => !m.IsClosed)}
         renderItem={match => <MatchItem {...match.item}/>}
       />
+      <Text></Text>
       <FlatList
         data={matchesFinished}
         renderItem={match => <MatchItem {...match.item}/>}
