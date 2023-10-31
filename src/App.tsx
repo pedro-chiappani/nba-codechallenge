@@ -2,7 +2,7 @@ import * as React from 'react';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TeamsScreen from './screens/TeamsScreen';
+import TeamsScreen from './screens/TeamListScreen';
 import PlayerListScreen from './screens/PlayerListScreen';
 import PlayerScreen from './screens/PlayerScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -12,6 +12,7 @@ import ScoreScreen from './screens/ScoreScreen';
 import { RootStackParamList } from './types/navigation';
 import { Button, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import TeamScreen from './screens/TeamScreen';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -91,6 +92,21 @@ const App = () => (
                 contentStyle: {backgroundColor: `#${route.params.primary}`},
               }
             : {title: 'Players'}
+        }
+      />
+      <Stack.Screen
+        name="Team"
+        component={TeamScreen}
+        options={({route}) =>
+          route.params
+            ? {
+                title: route.params.teamName,
+                headerTitleAlign: 'center',
+                headerTintColor: `#${route.params.primary}`,
+                headerStyle: {backgroundColor: `#${route.params.secondary}`},
+                contentStyle: {backgroundColor: `#${route.params.primary}`},
+              }
+            : {title: 'Team'}
         }
       />
       <Stack.Screen

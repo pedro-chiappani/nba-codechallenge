@@ -16,6 +16,10 @@ export type RootStackParamList = {
     teamName: string;
   };
   Player: {player: Player; primary: string; secondary: string};
+  Team: {team: string;
+    primary: string;
+    secondary: string;
+    teamName: string;}
   NBApp: undefined;
 };
 

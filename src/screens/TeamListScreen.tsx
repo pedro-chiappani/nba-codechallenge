@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -17,47 +17,54 @@ import useGetTeams from '../hooks/useGetTeams';
 import {HomeScreenProps} from '../types/navigation';
 import {Team} from '../types/team';
 import { render } from '@testing-library/react-native';
+import SearchBox from '../components/searchBar';
 
 const TeamsScreen = () => {
   const {dato, loado, erro} = useGetTeams();
   //console.log(data?.map(team => team.WikipediaLogoUrl));
   const navigation = useNavigation();
+  const [teams, setTeams] = useState<Team[] | undefined>(dato);
 
-  const renderCell = (team: Team, index: number) => {
-    const secondary = ['Heat', 'Rockets', 'Nets']
-    const whites =['Spurs']
-    let uri = team.WikipediaLogoUrl;
-    if (uri.includes("Cleveland")){
-      uri = "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cleveland_Cavaliers_logo.svg"
-    }
-    const pers = equipos.find(e => e.equipo == team.Name)
-    
-    return (
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('PlayerList', {
-            team: team.Key,
-            primary: team.PrimaryColor,
-            secondary: team.SecondaryColor,
-            teamName: `${team.Name}  ${pers ? '(' + pers.persona + ')' : ''}`,
+  const updateSearch = (query: string) => {
+    setTeams(
+      query
+        ? dato?.filter(p => {
+            const name = p.City + ' ' + p.Name;
+            return name.toLowerCase().includes(query.toLowerCase());
           })
-        }
-        style={[styles.container, {backgroundColor: secondary.includes(team.Name)?`#${team.SecondaryColor}`:`#${team.PrimaryColor}`}]}>
-        <SvgCssUri
-          uri={uri}
-          width={"100%"}
-          height={"100%"}
-          fill={'black'}
-        />
-      </TouchableOpacity>
+        : dato,
     );
   };
-  
+
+  useEffect(() => {
+    myFuncion();
+    return () => {
+      setTeams(undefined)
+    }
+  }, [loado]);
+
+  const myFuncion = () => {
+    if (!loado)
+      setTeams(dato)
+  }
+
+  const searchBox: Team = {TeamID: -1} as Team;
 
   return (
     <GestureHandlerRootView>
-    <FlatList data={dato}
-     renderItem={({item,index}) => renderCell(item,index)}/>
+    <FlatList data={teams ? [searchBox, ...teams] : [searchBox]}
+    //  renderItem={({item,index}) => renderCell(item,index)}
+     renderItem={({item, index}) => {
+      return index == 0 ? (
+        // <SearchBox updateSearch={updateSearch} color={'808080'}  />
+
+        <Text></Text>
+      ) : (
+        <TeamItem
+          {...item}
+        />
+      );
+    }}/>
     </GestureHandlerRootView>
   );
 };

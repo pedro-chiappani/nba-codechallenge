@@ -4,34 +4,38 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import {SvgCssUri} from 'react-native-svg';
 import {Team} from '../types/team';
 import {HomeScreenProps} from '../types/navigation';
+import { equipos } from '../hooks/equipos';
 
 const TeamItem = (team: Team) => {
   const navigation = useNavigation();
-  let uri = team.WikipediaLogoUrl;
-  if (uri.includes("Cavaliers")){
-    uri = "https://upload.wikimedia.org/wikipedia/sco/4/4a/Milwaukee_Bucks_logo.svg"
-  }
-  // console.log(uri)
-
-  return (
-    <TouchableOpacity
-      onPress={() =>
-        navigation.navigate('PlayerList', {
-          team: team.Key,
-          primary: team.PrimaryColor,
-          secondary: team.SecondaryColor,
-          teamName: team.Name,
-        })
-      }
-      style={[styles.container, {backgroundColor: `#${team.SecondaryColor}`}]}>
-      <SvgCssUri
-        uri={uri}
-        width="100%"
-        fill={`black`}
-      />
-    </TouchableOpacity>
-  );
-};
+  const secondary = ['Heat', 'Rockets', 'Nets']
+    const whites =['Spurs']
+    let uri = team.WikipediaLogoUrl;
+    if (uri.includes("Cleveland")){
+      uri = "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cleveland_Cavaliers_logo.svg"
+    }
+    const pers = equipos.find(e => e.equipo == team.Name)
+    
+    return (
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Team', {
+            team: team.Key,
+            primary: team.PrimaryColor,
+            secondary: team.SecondaryColor,
+            teamName: `${team.Name}  ${pers ? '(' + pers.persona + ')' : ''}`,
+          })
+        }
+        style={[styles.container, {backgroundColor: secondary.includes(team.Name)?`#${team.SecondaryColor}`:`#${team.PrimaryColor}`}]}>
+        <SvgCssUri
+          uri={uri}
+          width={"100%"}
+          height={"100%"}
+          fill={'black'}
+        />
+      </TouchableOpacity>
+    );
+  };
 
 const styles = StyleSheet.create({
   container: {
