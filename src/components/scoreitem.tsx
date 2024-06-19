@@ -28,7 +28,8 @@ const ScoreItem = (match: Matches) => {
   return (
     <View>
       <TouchableOpacity onPress={copyToClipboard}>
-        <Text style={styles.title}>{r}</Text>
+        //<Text style={styles.title}>{r}</Text>
+        <Text style={styles.tutle} BOSTON CELTICS CAMPEONES 2024</Text>
       </TouchableOpacity>
     </View>
     );
