@@ -9,12 +9,12 @@ import Clipboard from "@react-native-clipboard/clipboard";
 import cadena from "./generateStrigns";
 
 const ScoreItem = (match: Matches) => {
-  
-  
+
+
 
   const [coppiedText, setCopiedText] = useState('');
-  
-  
+
+
   const copyToClipboard = () => {
     Clipboard.setString(r);
   };
@@ -24,12 +24,11 @@ const ScoreItem = (match: Matches) => {
     setCopiedText(text);
   };
   let r = cadena(match)
-  
+
   return (
     <View>
       <TouchableOpacity onPress={copyToClipboard}>
-        //<Text style={styles.title}>{r}</Text>
-        <Text style={styles.title}> BOSTON CELTICS CAMPEONES 2024</Text>
+        <Text style={styles.title}>{r}</Text>
       </TouchableOpacity>
     </View>
     );

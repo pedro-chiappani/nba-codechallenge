@@ -24,12 +24,13 @@ const ScoreScreen = () => {
     let f = scores[0]["Day"].toString().split("T")[0].split("-")
     fechaRes ="Resultados "+(f[2]+"/" + f[1])
   }else{
-    fechaRes = "No hay resultados para mostrar"
+    // fechaRes = "No hay resultados para mostrar"
+    fechaRes = "BOSTON CELTICS CAMPEONES 2024"
   }
   const [coppiedText, setCopiedText] = useState('');
 //   console.log("clipboard " + data)
   // console.log("cad: " + cad)
-  
+
   const copyToClipboard = () => {
     Clipboard.setString(cad.toString());
   };
@@ -92,7 +93,7 @@ const ScoreScreen = () => {
     //   </TouchableOpacity>
     // </View>
   );
-  
+
 };
 
 const styles = StyleSheet.create({

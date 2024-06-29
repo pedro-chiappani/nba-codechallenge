@@ -1,7 +1,7 @@
 
 export const equipos = [
   {
-    equipo: 'Timberwolves',
+    equipo: 'Spurs',
     persona: 'Joaco P',
   },
   {
@@ -21,11 +21,7 @@ export const equipos = [
     persona: 'Lucas',
   },
   {
-    equipo: 'Jazz',
-    persona: 'Yulo',
-  },
-  {
-    equipo: 'Rockets',
+    equipo: 'Wizards',
     persona: 'Pipi',
   },
   {
@@ -61,7 +57,7 @@ export const equipos = [
     persona: 'Nico',
   },
   {
-    equipo: 'Suns',
+    equipo: 'Timberwolves',
     persona: 'San',
   },
   {
@@ -77,7 +73,7 @@ export const equipos = [
     persona: 'Nacho K',
   },
   {
-    equipo: 'Trail Blazers',
+    equipo: '76ers',
     persona: 'Agus M',
   },
   {
