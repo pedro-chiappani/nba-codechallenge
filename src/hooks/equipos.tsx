@@ -80,4 +80,12 @@ export const equipos = [
     equipo: 'Kings',
     persona: 'Lo',
   },
+  {
+    equipo: 'Thunder',
+    persona: 'Santi E',
+  },
+  {
+    equipo: 'Magic',
+    persona: 'Caro',
+  },
 ];
