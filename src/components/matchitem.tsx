@@ -1,65 +1,25 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, Text, View, TextInput } from "react-native";
-import { Matches } from "../types/match";
-import { Team } from "../types/team";
-import useGetTeams from "../hooks/useGetTeams";
-import { equipos } from "../hooks/equipos";
-import Clipboard from "@react-native-clipboard/clipboard";
+import { StyleSheet, TouchableOpacity, Text, View} from "react-native";
 import cadena from "./generateStrigns";
-// import cadena from "./generateStrigns";
 
 
-// const cadena = (match: Matches) => {
-//   const {dato,loado,erro} = useGetTeams();
-//   let home = dato?.find(team => team.TeamID == match.HomeTeamID);
-//   let away = dato?.find(team => team.TeamID == match.AwayTeamID);
-//   let hora = ((match.DateTimeUTC.toLocaleString().split('T'))[1]).split(':')
-//   let mmostrar = ((parseInt(hora[0]) - 3 < 0 ? parseInt(hora[0])+24-3 : parseInt(hora[0]) -3) +':'+ hora[1])
-//   let pers1 = (equipos.filter(e => e.equipo == (home?.Name)))
-//   let pers2 = (equipos.filter(e => e.equipo == (away?.Name)))
-
-//   return "*"+home?.Name+"*"+
-//   " "+"("+pers1?.map(e => e.persona).toString()+")"+" vs "+
-//   "*"+away?.Name+"*"+
-//   " "+"("+pers2?.map(e => e.persona).toString()+")"+" "+mmostrar+" "+"hs"
-
-// }
 
 
-const MatchItem = (match: Matches) => {
 
-  let r = cadena(match)
+const MatchItem = ({item, setPartidos}: any) => {
 
-  const [cado, setCad] = useState([""])
+  let r = cadena(item);
 
-  const [coppiedText, setCopiedText] = useState("");
-  
-  const copyToClipboard= async () => {
-    Clipboard.setString(r);
-    // let a = await Clipboard.getString();
-    // setCad([...cad, a + "\n"])
-  };
 
-  const fetchCopiedText = async () => {
-    const text = await Clipboard.getString();
-    // setCad([...cad, text + "\n"])
-    setCopiedText(text);
-  };
 
-  // console.log(cad)
 
   return (
     <View>
-    <TouchableOpacity onPress={copyToClipboard}>
+    <TouchableOpacity onPress={() => setPartidos(r)}>
     <Text style={styles.title}>
       {r}
     </Text>
     </TouchableOpacity>
-    {/* <TouchableOpacity onPress={fetchCopiedText}>
-      <Text>pegar</Text>
-    </TouchableOpacity>
-    <Text>{cad}</Text> */}
     </View>
   );
 };
@@ -75,7 +35,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom:10,
-    fontSize: 18,
+    fontSize: 17,
     color:'black'
   },
 });
