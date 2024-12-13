@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -12,37 +12,16 @@ import {HomeScreenProps} from '../types/navigation';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
 import MatchItem from '../components/matchitem';
-import ScoreItem from '../components/scoreitem';
-import useGetScores from '../hooks/useGetScores';
-import useGetTeams from '../hooks/useGetTeams';
-import { Team } from '../types/team';
 
 const MatchScreen = () => {
   const {data, loading, error} = useGetMatches();
-  let matches = data.filter(m => (m.Status != ("NotNecessary" || "Canceled")))
+  let matches = data.filter(m => (m.Status != ("NotNecessary" || "Canceled"))).filter(m => !m.IsClosed)
   let matchesFinished = matches.filter(m => m.IsClosed)
-  const [cad, setCad] = useState([""]); 
   const navigation = useNavigation<HomeScreenProps>();
-  
 
-  const [coppiedText, setCopiedText] = useState('');
-  
-  
-  const copyToClipboard = () => {
-    Clipboard.setString(cad.toString());
-  };
+  const [partidos, setPartidos] = useState(['']);
 
-  // const listener = async () => {
-  //   const text = await Clipboard.getString();
-  //   setCad([...cad, text + "\n"])
-  //   console.log("changed!")};
-  // Clipboard.addListener(listener);
 
-  const fetchCopiedText = async () => {
-    const text = await Clipboard.getString();
-    // setCad([...cad, text + "\n"])
-    setCopiedText(text);
-  };
   let fechaPartidos;
   if (matches.length > 0){
     let f = matches[0]["Day"].toString().split("T")[0].split("-")
@@ -51,26 +30,51 @@ const MatchScreen = () => {
     fechaPartidos = "No hay partidos hoy"
   }
 
+
+  const copyToClipboard = () => {
+    Clipboard.setString(fechaPartidos + '\n' + partidos.toString().replace(/,/g, '\n'));
+  };
+
+  const cleanPartidos = () => {
+    setPartidos(['']);
+  };
+
+  const addPartido = (partido: string) => {
+    if (!partidos.includes(partido)){
+    setPartidos([...partidos, partido]);
+    }
+  };
+
+
   return (
-    <View style={styles.container}>
-      <Text selectable style={styles.title}>
+    <View style={[styles.container, {flexDirection: 'column'}]}>
+    <GestureHandlerRootView>
+    <View>
+        <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
+          <Text style={styles.title}>
         {fechaPartidos}
       </Text>
+      <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity onPress={copyToClipboard}>
+              <Text>Copiar  </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={cleanPartidos}>
+              <Text>Limpiar</Text>
+            </TouchableOpacity>
+          </View>
+          </View>
       <Text></Text>
-      <GestureHandlerRootView>
       <FlatList
-        data={matches.filter(m => !m.IsClosed)}
-        renderItem={match => <MatchItem {...match.item}/>}
+        data={matches}
+        renderItem={({item}) => (<MatchItem item={item} setPartidos={addPartido}/>)}
       />
       <Text></Text>
       <FlatList
         data={matchesFinished}
-        renderItem={match => <MatchItem {...match.item}/>}
+        renderItem={({item}) => (<MatchItem item={item} setPartidos={addPartido}/>)}
       />
-      </GestureHandlerRootView>
-      <TouchableOpacity onPress={copyToClipboard}>
-        <Text style={styles.title}>{cad}</Text>
-      </TouchableOpacity>
+    </View>
+    </GestureHandlerRootView>
     </View>
   );
 };
@@ -99,12 +103,3 @@ const styles = StyleSheet.create({
 })
 
 export default MatchScreen;
-
-
-// <TouchableOpacity onPress={copyToClipboard}>
-// <Text>Alo</Text>
-// </TouchableOpacity>
-// <TouchableOpacity onPress={fetchCopiedText}>
-// <Text>Pa ver</Text>
-// </TouchableOpacity>
-// <Text>{coppiedText}</Text>

@@ -1,25 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
-import { Matches } from "../types/match";
-import { Team } from "../types/team";
-import useGetTeams from "../hooks/useGetTeams";
-import { equipos } from "../hooks/equipos";
-import Clipboard from "@react-native-clipboard/clipboard";
 import cadena from "./generateStrigns";
 
 const ScoreItem = ({ item, setPartidos }: any) => {
-  const [coppiedText, setCopiedText] = useState('');
 
-  const copyToClipboard = () => {
-    Clipboard.setString(r);
-  };
 
-  const fetchCopiedText = async () => {
-    const text = await Clipboard.getString();
-    setCopiedText(text);
-  };
-  // console.log(item)
+
   let r = cadena(item);
 
   return (
@@ -31,7 +17,6 @@ const ScoreItem = ({ item, setPartidos }: any) => {
   );
 };
 
-//Los *{home?.map(a => a.Name)}* ({(pers1?.map(e => e.persona)).toString()}) {res} *{away?.map(a => a.Name)}* ({(pers2?.map(e => e.persona)).toString()}) {match.HomeTeamScore}-{match.AwayTeamScore}
 
 const styles = StyleSheet.create({
   container: {

@@ -1,23 +1,19 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   TouchableOpacity,
   Text,
   StyleSheet,
-  SafeAreaView,
-  Button,
 } from 'react-native';
 import {HomeScreenProps} from '../types/navigation';
 import Clipboard, {useClipboard} from '@react-native-clipboard/clipboard';
 import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
 import ScoreItem from '../components/scoreitem';
 import useGetScores from '../hooks/useGetScores';
-import cadena from '../components/generateStrigns';
 
 const ScoreScreen = () => {
   const {dat, load, err} = useGetScores();
-  const [cad, setCad] = useState(['']);
   const navigation = useNavigation<HomeScreenProps>();
   const scores = dat.filter(score => score.IsClosed);
   let fechaRes;
@@ -31,32 +27,10 @@ const ScoreScreen = () => {
 
   const [partidos, setPartidos] = useState(['']);
 
-  // scores.map(score => {setPartidos(cadena(score))})
-
-  const [coppiedText, setCopiedText] = useState('');
-  //   console.log("clipboard " + data)
-  // console.log("cad: " + cad)
-
   const copyToClipboard = () => {
     Clipboard.setString(
       fechaRes + '\n' + partidos.toString().replace(/,/g, '\n'),
     );
-  };
-  const listener = async () => {
-    const text = await Clipboard.getString();
-    // setCad([...cad,text + "\n"])
-    // setString("")
-    // console.log("changed!")};
-    if (Clipboard.hasString()) {
-      // console.log("Tiene: " + text)
-    }
-  };
-  Clipboard.addListener(listener);
-
-  const fetchCopiedText = async () => {
-    const text = await Clipboard.getString();
-    // setCad([...cad, text + "\n"])
-    setCopiedText(text);
   };
 
   const cleanPartidos = () => {
@@ -64,7 +38,9 @@ const ScoreScreen = () => {
   };
 
   const addPartido = (partido: string) => {
-    setPartidos([...partidos, partido]);
+    if (!partidos.includes(partido)){
+      setPartidos([...partidos, partido]);
+      }
   };
 
 
@@ -97,7 +73,6 @@ const ScoreScreen = () => {
               <ScoreItem item={item} setPartidos={addPartido} />
             )}
           />
-          <Text></Text>
         </View>
       </GestureHandlerRootView>
     </View>
@@ -128,11 +103,3 @@ const styles = StyleSheet.create({
 });
 
 export default ScoreScreen;
-
-// <TouchableOpacity onPress={copyToClipboard}>
-// <Text>Alo</Text>
-// </TouchableOpacity>
-// <TouchableOpacity onPress={fetchCopiedText}>
-// <Text>Pa ver</Text>
-// </TouchableOpacity>
-// <Text>{coppiedText}</Text>
