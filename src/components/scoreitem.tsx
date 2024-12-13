@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { Matches } from "../types/match";
 import { Team } from "../types/team";
@@ -8,12 +8,8 @@ import { equipos } from "../hooks/equipos";
 import Clipboard from "@react-native-clipboard/clipboard";
 import cadena from "./generateStrigns";
 
-const ScoreItem = (match: Matches) => {
-
-
-
+const ScoreItem = ({ item, setPartidos }: any) => {
   const [coppiedText, setCopiedText] = useState('');
-
 
   const copyToClipboard = () => {
     Clipboard.setString(r);
@@ -23,15 +19,16 @@ const ScoreItem = (match: Matches) => {
     const text = await Clipboard.getString();
     setCopiedText(text);
   };
-  let r = cadena(match)
+  // console.log(item)
+  let r = cadena(item);
 
   return (
     <View>
-      <TouchableOpacity onPress={copyToClipboard}>
+      <TouchableOpacity onPress={() => setPartidos(r)}>
         <Text style={styles.title}>{r}</Text>
       </TouchableOpacity>
     </View>
-    );
+  );
 };
 
 //Los *{home?.map(a => a.Name)}* ({(pers1?.map(e => e.persona)).toString()}) {res} *{away?.map(a => a.Name)}* ({(pers2?.map(e => e.persona)).toString()}) {match.HomeTeamScore}-{match.AwayTeamScore}

@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -9,40 +9,48 @@ import {
   Button,
 } from 'react-native';
 import {HomeScreenProps} from '../types/navigation';
-import Clipboard, { useClipboard } from '@react-native-clipboard/clipboard';
-import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
+import Clipboard, {useClipboard} from '@react-native-clipboard/clipboard';
+import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
 import ScoreItem from '../components/scoreitem';
 import useGetScores from '../hooks/useGetScores';
+import cadena from '../components/generateStrigns';
 
 const ScoreScreen = () => {
   const {dat, load, err} = useGetScores();
-  const [cad, setCad] = useState([""]);
+  const [cad, setCad] = useState(['']);
   const navigation = useNavigation<HomeScreenProps>();
-  const scores = dat.filter(score => score.IsClosed)
+  const scores = dat.filter(score => score.IsClosed);
   let fechaRes;
-  if (scores.length > 0){
-    let f = scores[0]["Day"].toString().split("T")[0].split("-")
-    fechaRes ="Resultados "+(f[2]+"/" + f[1])
-  }else{
-     fechaRes = "No hay resultados para mostrar"
+  if (scores.length > 0) {
+    let f = scores[0]['Day'].toString().split('T')[0].split('-');
+    fechaRes = 'Resultados ' + (f[2] + '/' + f[1]);
+  } else {
+    fechaRes = 'No hay resultados para mostrar';
     //fechaRes = "BOSTON CELTICS CAMPEONES 2024"
   }
+
+  const [partidos, setPartidos] = useState(['']);
+
+  // scores.map(score => {setPartidos(cadena(score))})
+
   const [coppiedText, setCopiedText] = useState('');
-//   console.log("clipboard " + data)
+  //   console.log("clipboard " + data)
   // console.log("cad: " + cad)
 
   const copyToClipboard = () => {
-    Clipboard.setString(cad.toString());
+    Clipboard.setString(
+      fechaRes + '\n' + partidos.toString().replace(/,/g, '\n'),
+    );
   };
   const listener = async () => {
     const text = await Clipboard.getString();
     // setCad([...cad,text + "\n"])
     // setString("")
     // console.log("changed!")};
-    if (Clipboard.hasString()){
-        // console.log("Tiene: " + text)
-        }
+    if (Clipboard.hasString()) {
+      // console.log("Tiene: " + text)
     }
+  };
   Clipboard.addListener(listener);
 
   const fetchCopiedText = async () => {
@@ -51,49 +59,49 @@ const ScoreScreen = () => {
     setCopiedText(text);
   };
 
-  const cleanCad = () => {
-    // setString("");
-    let x = cad?.filter(c => c===null);
-    setCad(x)
-    // console.log(Clipboard.hasString())
-    // console.log("clipboard " + data)
-    // console.log("cad " + cad)
-  }
+  const cleanPartidos = () => {
+    setPartidos(['']);
+  };
+
+  const addPartido = (partido: string) => {
+    setPartidos([...partidos, partido]);
+  };
+
 
   return (
-    <View style={[styles.container, {
-        flexDirection:'column'
-    }]}>
+    <View
+      style={[
+        styles.container,
+        {
+          flexDirection: 'column',
+        },
+      ]}>
       <GestureHandlerRootView>
-        <View style={{}}>
-      <Text style={styles.title}>{fechaRes}</Text>
-      <Text></Text>
-      <FlatList
-        data={scores}
-        renderItem={score => <ScoreItem {...score.item} />}
-      />
-      <Text></Text>
-      </View>
-      </GestureHandlerRootView>
-      {/* <Button title='Clean' onPress={cleanCad}/>
-      <TouchableOpacity onPress={copyToClipboard}>
-         <Text style={styles.title}>{cad}</Text>
-       </TouchableOpacity> */}
-    </View>
-    //   <Text selectable style={styles.title}>
-    //     Partidos {hoy}
-    //   </Text>
-    //   <Text></Text>
-    //   <FlatList
-    //     data={data}
-    //     renderItem={match => <MatchItem {...match.item}/>}
-    //   />
-    //   <TouchableOpacity onPress={copyToClipboard}>
-    //     <Text style={styles.title}>{cad}</Text>
-    //   </TouchableOpacity>
-    // </View>
-  );
+        <View>
+        <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
+          <Text style={styles.title}>{fechaRes}</Text>
 
+          <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity onPress={copyToClipboard}>
+              <Text>Copiar  </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={cleanPartidos}>
+              <Text>Limpiar</Text>
+            </TouchableOpacity>
+          </View>
+          </View>
+          <Text></Text>
+          <FlatList
+            data={scores}
+            renderItem={({item}) => (
+              <ScoreItem item={item} setPartidos={addPartido} />
+            )}
+          />
+          <Text></Text>
+        </View>
+      </GestureHandlerRootView>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -105,22 +113,21 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black'
+    color: 'black',
   },
   container: {
     flex: 1,
     paddingTop: 15,
-    margin:10,
+    margin: 10,
   },
   item: {
     padding: 10,
     fontSize: 15,
     height: 20,
   },
-})
+});
 
 export default ScoreScreen;
-
 
 // <TouchableOpacity onPress={copyToClipboard}>
 // <Text>Alo</Text>
