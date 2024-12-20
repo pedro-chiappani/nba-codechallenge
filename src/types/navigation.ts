@@ -7,7 +7,9 @@ import {Team} from './team';
 
 export type RootStackParamList = {
   Home: {param: string};
+  Config: undefined;
   Icon: undefined;
+  Personas: undefined;
   Teams: undefined;
   PlayerList: {
     team: string;
@@ -24,6 +26,8 @@ export type RootStackScreenProps<T extends keyof RootStackParamList> =
 
 export type HomeScreenProps = StackNavigationProp<RootStackParamList>;
 export type IconScreenProps = StackNavigationProp<RootStackParamList>;
+export type ConfigScreenProps = StackNavigationProp<RootStackParamList>;
+export type PersonasScreenProps = StackNavigationProp<RootStackParamList>;
 export type TeamsScreenProps = StackNavigationProp<RootStackParamList>;
 export type PlayerListScreenProps = StackNavigationProp<RootStackParamList>;
 export type PlayerScreenProps = StackNavigationProp<RootStackParamList>;

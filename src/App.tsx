@@ -12,6 +12,9 @@ import ScoreScreen from './screens/ScoreScreen';
 import { RootStackParamList } from './types/navigation';
 import { Button, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ConfigScreen from './screens/ConfigScreen';
+import { Screen } from 'react-native-screens';
+import PersonasScreen from './screens/PersonasScreen';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -42,7 +45,7 @@ const TabNavigator = () => {
       <Tab.Screen name='Partidos' component={MatchScreen}/>
       <Tab.Screen name='Equipos' component={TeamsScreen}/>
     </Tab.Navigator>
-    
+
   );
 };
 
@@ -50,7 +53,7 @@ const TabNavigator = () => {
 
 const App = () => (
   <NavigationContainer>
-    
+
     <Stack.Navigator>
       <Stack.Screen name="NBApp" component={TabNavigator}
       options={({navigation}) => ({
@@ -59,12 +62,20 @@ const App = () => (
           //     onPress={() => navigation.navigate('Icon')}
           //     title="Icon"
           //   />
-          <TouchableOpacity  onPress={() => navigation.navigate('Icon')}>
+          <TouchableOpacity  onPress={() => navigation.navigate('Config')}>
             <Icon name='settings' size={30} color={'grey'} onPress={() =>
-            navigation.navigate('Icon')}></Icon>
+            navigation.navigate('Config')}></Icon>
           </TouchableOpacity>
         )
       })}
+      />
+      <Stack.Screen
+        name="Config"
+        component={ConfigScreen}
+      />
+      <Stack.Screen
+        name="Personas"
+        component={PersonasScreen}
       />
       <Stack.Screen
         name="Icon"
