@@ -7,20 +7,30 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import equipos from '../hooks/equipos.json';
+
+import useGetEquipos from '../hooks/useGetEquipos';
+
 
 const PersonasScreen = () => {
-  const [data, setData] = useState([{id: 0, equipo: '', persona: ''}]);
+  const [datas, setDatas] = useState([{id: 0, equipo: '', persona: ''}]);
 
-  useEffect(() => {
-    setData(equipos);
-  }, []);
+  const {equipos, loading, error} = useGetEquipos();
+
+    useEffect(() => {
+        if (!loading && !error) {
+        setDatas(equipos
+            // equipos.map((equipo, index) => {
+            // return {id: index + 1, equipo: equipo.equipo, persona: equipo.persona};
+            // }),
+        );
+        }
+    }, [loading, error]);
 
   return (
     <View style={styles.container}>
-      <Button title="Guardar" onPress={undefined}></Button>
+      <Button title="Guardar" onPress={() => {console.log(datas)}}></Button>
       <FlatList
-        data={data}
+        data={datas}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => (
           <View style={styles.option}>
@@ -32,7 +42,7 @@ const PersonasScreen = () => {
               <TextInput
                 value={item.persona}
                 onChangeText={text => {
-                  setData(prevData => {
+                  setDatas(prevData => {
                     const newData = [...prevData];
                     newData[item.id - 1].persona = text;
                     return newData;
@@ -45,7 +55,7 @@ const PersonasScreen = () => {
               <TextInput
                 value={item.equipo}
                 onChangeText={text => {
-                  setData(prevData => {
+                  setDatas(prevData => {
                     const newData = [...prevData];
                     newData[item.id - 1].equipo = text;
                     return newData;
