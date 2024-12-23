@@ -16,6 +16,7 @@ const ScoreScreen = () => {
   const {dat, load, err} = useGetScores();
   const navigation = useNavigation<HomeScreenProps>();
   const scores = dat.filter(score => score.IsClosed);
+  console.log(scores)
   let fechaRes;
   if (scores.length > 0) {
     let f = scores[0]['Day'].toString().split('T')[0].split('-');
