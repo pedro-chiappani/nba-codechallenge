@@ -7,7 +7,7 @@ import {Team} from './team';
 
 export type RootStackParamList = {
   Home: {param: string};
-  Config: undefined;
+  Configuracion: undefined;
   Icon: undefined;
   Personas: undefined;
   Teams: undefined;

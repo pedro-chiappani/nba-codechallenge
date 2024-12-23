@@ -64,13 +64,13 @@ const App = () => (
           //   />
           <TouchableOpacity  onPress={() => navigation.navigate('Config')}>
             <Icon name='settings' size={30} color={'grey'} onPress={() =>
-            navigation.navigate('Config')}></Icon>
+            navigation.navigate('Configuracion')}></Icon>
           </TouchableOpacity>
         )
       })}
       />
       <Stack.Screen
-        name="Config"
+        name="Configuracion"
         component={ConfigScreen}
       />
       <Stack.Screen
