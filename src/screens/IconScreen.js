@@ -10,9 +10,7 @@ const IconScreen = () => {
 
   const onSelectLogo = async () => {
     try {
-      console.log(`logo: ${ activeLogo }`)
       const response = await changeIcon(activeLogo);
-      console.log(response)
     } catch (error) {
       console.log(`${error}`);
     }
@@ -21,7 +19,6 @@ const IconScreen = () => {
   useEffect(() => {
     const getCurrentIcon = async () => {
       const currentIcon = await getIcon();
-      console.log(`current icon: ${currentIcon}`)
       setActiveLogo(currentIcon === 'Default' ? 'Default' : currentIcon);
     };
     getCurrentIcon();
@@ -55,7 +52,7 @@ const IconScreen = () => {
       </TouchableOpacity>
     );
   };
-  
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.rootContainer}>

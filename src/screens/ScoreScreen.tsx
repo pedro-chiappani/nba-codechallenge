@@ -16,6 +16,7 @@ const ScoreScreen = () => {
   const {dat, load, err} = useGetScores();
   const navigation = useNavigation<HomeScreenProps>();
   const scores = dat.filter(score => score.IsClosed);
+
   let fechaRes;
   if (scores.length > 0) {
     let f = scores[0]['Day'].toString().split('T')[0].split('-');
@@ -59,10 +60,10 @@ const ScoreScreen = () => {
 
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity onPress={copyToClipboard}>
-              <Text>Copiar  </Text>
+              <Text style={styles.text} >Copiar  </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={cleanPartidos}>
-              <Text>Limpiar</Text>
+              <Text style={styles.text} >Limpiar</Text>
             </TouchableOpacity>
           </View>
           </View>
@@ -88,6 +89,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: 'black',
+  },
+  text: {
+    fontSize: 15,
     color: 'black',
   },
   container: {
