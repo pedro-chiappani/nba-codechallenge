@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import useGetEquipos from '../hooks/useGetEquipos';
+import axios from 'axios';
 
 
 const PersonasScreen = () => {
@@ -16,19 +17,27 @@ const PersonasScreen = () => {
 
   const {equipos, loading, error} = useGetEquipos();
 
-    useEffect(() => {
-        if (!loading && !error) {
-        setDatas(equipos
-            // equipos.map((equipo, index) => {
-            // return {id: index + 1, equipo: equipo.equipo, persona: equipo.persona};
-            // }),
-        );
-        }
-    }, [loading, error]);
+  useEffect(() => {
+    if (!loading && !error) {
+      setDatas(equipos);
+    }
+  }, [loading, error]);
+
+  const handleSubmit = () => {
+    axios
+    .put('https://api.github.com/repos/pedro-chiappani/nba-codechallenge/contents/src/hooks/equipos.json?ref=prod', {
+      message: 'update equipos',
+      commiter: {
+        name: 'pedro-chiappani',
+        email: 'pepeelchapa@gmail.com',
+      }
+    })
+
+  }
 
   return (
     <View style={styles.container}>
-      <Button title="Guardar" onPress={() => {console.log(datas)}}></Button>
+      <Button title="Guardar" onPress={handleSubmit}></Button>
       <FlatList
         data={datas}
         keyExtractor={(item, index) => index.toString()}
