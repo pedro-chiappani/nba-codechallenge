@@ -29,6 +29,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Ensure Android SDK Platform 35 is installed
+        run: |
+          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-35"
+
       - name: Configure Keystore
         run: |
           echo "$ANDROID_KEYSTORE_FILE" > keystore.jks.b64
@@ -42,6 +46,10 @@ jobs:
           KEYSTORE_KEY_ALIAS: ${{ secrets.ALIAS }}
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEYSTORE_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+
+      - name: Clean build
+        run: |
+          cd android && ./gradlew clean
 
       - name: Build Android Release
         run: |

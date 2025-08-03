@@ -143,13 +143,13 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
 
     ndkVersion rootProject.ext.ndkVersion
-    compileSdk 34
+    compileSdk 35
     defaultConfig {
         applicationId "com.resulnba"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 19
-        versionName "1.4.0"
+        versionCode 21
+        versionName "1.4.1"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {
