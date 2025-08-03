@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SvgCssUri} from 'react-native-svg';
-import { equipos } from '../hooks/equipos';
+//import { equipos } from '../hooks/equipos';
 import TeamItem from '../components/teamItem';
 import useGetTeams from '../hooks/useGetTeams';
 import {HomeScreenProps} from '../types/navigation';
@@ -22,6 +22,7 @@ const TeamsScreen = () => {
   const {dato, loado, erro} = useGetTeams();
   //console.log(data?.map(team => team.WikipediaLogoUrl));
   const navigation = useNavigation();
+  const equipos = require('../hooks/equipos.json');
 
   const renderCell = (team: Team, index: number) => {
     const secondary = ['Heat', 'Rockets', 'Nets']
@@ -30,8 +31,11 @@ const TeamsScreen = () => {
     if (uri.includes("Cleveland")){
       uri = "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cleveland_Cavaliers_logo.svg"
     }
-    const pers = equipos.find(e => e.equipo == team.Name)
-    
+    if (uri.includes("Clippers")){
+      uri = "https://upload.wikimedia.org/wikipedia/en/e/ed/Los_Angeles_Clippers_%282024%29.svg"
+    }
+    const pers = equipos.find((e: { equipo: string; }) => e.equipo == team.Name)
+
     return (
       <TouchableOpacity
         onPress={() =>
@@ -52,7 +56,7 @@ const TeamsScreen = () => {
       </TouchableOpacity>
     );
   };
-  
+
 
   return (
     <GestureHandlerRootView>

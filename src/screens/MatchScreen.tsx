@@ -15,7 +15,7 @@ import MatchItem from '../components/matchitem';
 
 const MatchScreen = () => {
   const {data, loading, error} = useGetMatches();
-  let matches = data.filter(m => (m.Status != ("NotNecessary" || "Canceled"))).filter(m => !m.IsClosed)
+  let matches = data.filter(m => (m.Status !== "NotNecessary" && m.Status !== "Canceled")).filter(m => !m.IsClosed)
   let matchesFinished = matches.filter(m => m.IsClosed)
   const navigation = useNavigation<HomeScreenProps>();
 
@@ -56,10 +56,10 @@ const MatchScreen = () => {
       </Text>
       <View style={{flexDirection: 'row'}}>
             <TouchableOpacity onPress={copyToClipboard}>
-              <Text>Copiar  </Text>
+              <Text style={styles.text} >Copiar  </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={cleanPartidos}>
-              <Text>Limpiar</Text>
+              <Text style={styles.text} >Limpiar</Text>
             </TouchableOpacity>
           </View>
           </View>
@@ -84,6 +84,10 @@ const styles = StyleSheet.create({
     flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  text: {
+    fontSize: 15,
+    color: 'black',
   },
   title: {
     fontSize: 20,

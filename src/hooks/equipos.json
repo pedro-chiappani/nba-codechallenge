@@ -1,0 +1,110 @@
+[{
+    "id": 1,
+    "equipo": "Spurs",
+    "persona": "Joaco P"
+  },
+  {
+    "id": 2,
+    "equipo": "Hornets",
+    "persona": "Agus"
+  },
+  {
+    "id": 3,
+    "equipo": "Clippers",
+    "persona": "Nachito"
+  },
+  {
+    "id": 4,
+    "equipo": "Bulls",
+    "persona": "Ayr"
+  },
+  {
+    "id": 5,
+    "equipo": "Raptors",
+    "persona": "Lucas"
+  },
+  {
+    "id": 6,
+    "equipo": "Wizards",
+    "persona": "Pipi"
+  },
+  {
+    "id": 7,
+    "equipo": "Heat",
+    "persona": "Cocha"
+  },
+  {
+    "id": 8,
+    "equipo": "Bucks",
+    "persona": "Pepe"
+  },
+  {
+    "id": 9,
+    "equipo": "Cavaliers",
+    "persona": "Cafu"
+  },
+  {
+    "id": 10,
+    "equipo": "Grizzlies",
+    "persona": "Juli"
+  },
+  {
+    "id": 11,
+    "equipo": "Celtics",
+    "persona": "Laucha"
+  },
+  {
+    "id": 12,
+    "equipo": "Lakers",
+    "persona": "Facu R"
+  },
+  {
+    "id": 13,
+    "equipo": "Warriors",
+    "persona": "Pani"
+  },
+  {
+    "id": 14,
+    "equipo": "Knicks",
+    "persona": "Nico"
+  },
+  {
+    "id": 15,
+    "equipo": "Timberwolves",
+    "persona": "San"
+  },
+  {
+    "id": 16,
+    "equipo": "Nuggets",
+    "persona": "Joa"
+  },
+  {
+    "id": 17,
+    "equipo": "Mavericks",
+    "persona": "Tom DC"
+  },
+  {
+    "id": 18,
+    "equipo": "Pistons",
+    "persona": "Nacho K"
+  },
+  {
+    "id": 19,
+    "equipo": "76ers",
+    "persona": "Agus M"
+  },
+  {
+    "id": 20,
+    "equipo": "Kings",
+    "persona": "Lo"
+  },
+  {
+    "id": 21,
+    "equipo": "Thunder",
+    "persona": "Santi E"
+  },
+  {
+    "id": 22,
+    "equipo": "Magic",
+    "persona": "Caro"
+  }]

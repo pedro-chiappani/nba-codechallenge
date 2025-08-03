@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View} from "react-native";
 import cadena from "./generateStrigns";
 
-
-
-
-
 const MatchItem = ({item, setPartidos}: any) => {
 
   let r = cadena(item);
