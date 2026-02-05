@@ -52,4 +52,11 @@ allprojects {
         google()
         maven { url 'https://www.jitpack.io' }
     }
+    
+    // Force patched version of assertj-core to fix XXE vulnerability
+    configurations.all {
+        resolutionStrategy {
+            force 'org.assertj:assertj-core:3.27.7'
+        }
+    }
 }
