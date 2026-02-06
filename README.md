@@ -79,17 +79,17 @@ Jetifier is no longer needed for modern React Native projects. If you see Jetifi
 
 ### Android Lint Errors
 
-If you encounter lint errors during Android builds (e.g., `NewApi` errors from third-party libraries), the project is configured to handle these appropriately:
-- Lint errors from external dependencies don't abort the build
-- NewApi checks are disabled for known third-party library issues
-- Java 8 features (like forEach) are safely desugared by the Android build tools
+If you encounter lint errors during Android builds (e.g., `NewApi` errors from third-party libraries), the project uses a lint baseline to handle these appropriately:
+- Known issues in external dependencies are tracked in `android/app/lint-baseline.xml`
+- New issues in project code will still be caught and reported
+- The build continues even with lint warnings (but they're logged for review)
 
 The lint configuration in `android/app/build.gradle` is set to:
+- `baseline file("lint-baseline.xml")` - Tracks known issues separately
 - `abortOnError false` - Prevents build failures from lint warnings
 - `checkDependencies false` - Skips checking external dependencies
-- `disable 'NewApi'` - Disables API level compatibility checks
 
-This is standard for React Native projects that use third-party libraries with modern Java features.
+This approach maintains code quality checks for project code while not blocking builds due to third-party library issues. Java 8 features (like forEach in react-native-change-icon) are safely desugared by the Android build tools.
 
 ## Testing
 - `npm run test:watch`

@@ -264,12 +264,14 @@ android {
     namespace 'com.resulnba'
 
     lintOptions {
-        // Don't abort build on lint errors from third-party libraries
+        // Create a baseline to track known issues in third-party libraries
+        // while still catching new issues in project code
+        baseline file("lint-baseline.xml")
+        // Continue build even if there are lint errors
+        // (issues are logged but don't block the build)
         abortOnError false
-        // Ignore lint errors in external dependencies (node_modules)
+        // Don't check external dependencies for lint issues
         checkDependencies false
-        // Disable NewApi check for known issues in react-native-change-icon
-        disable 'NewApi'
     }
 
     buildTypes {
