@@ -263,15 +263,12 @@ android {
     }
     namespace 'com.resulnba'
 
-    lintOptions {
+    lint {
         // Create a baseline to track known issues in third-party libraries
         // while still catching new issues in project code
-        baseline file("lint-baseline.xml")
-        // Continue build even if there are lint errors
-        // (issues are logged but don't block the build)
-        abortOnError false
+        baseline = file("lint-baseline.xml")
         // Don't check external dependencies for lint issues
-        checkDependencies false
+        checkDependencies = false
     }
 
     buildTypes {
