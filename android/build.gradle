@@ -63,7 +63,8 @@ allprojects {
     // Skip lint tasks for external libraries from node_modules
     // This prevents build failures from third-party library lint issues
     afterEvaluate { project ->
-        if (project.path.contains('node_modules')) {
+        // Check if project is from node_modules using path separator
+        if (project.path.contains(':node_modules:') || project.path.startsWith(':node_modules')) {
             project.tasks.configureEach { task ->
                 if (task.name.startsWith('lint')) {
                     task.enabled = false
