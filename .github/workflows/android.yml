@@ -29,9 +29,9 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      - name: Ensure Android SDK Platform 34 is installed
+      - name: Ensure Android SDK Platform 35 is installed
         run: |
-          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-34"
+          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-35"
 
       - name: Configure Keystore
         run: |
