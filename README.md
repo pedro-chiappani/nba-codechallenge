@@ -68,6 +68,15 @@ If you encounter errors like `package com.resulnba does not exist` when compilin
 
 After pulling updates, always clean gradle cache as described above.
 
+### Jetifier Transformation Errors
+
+If you encounter errors like `Failed to transform ... using Jetifier` or `Unsupported class file major version`, this indicates Jetifier is trying to process modern Java bytecode. The project configuration:
+- **Jetifier is disabled** (`android.enableJetifier=false`)
+- All dependencies use AndroidX natively
+- No legacy `android.support.*` libraries
+
+Jetifier is no longer needed for modern React Native projects. If you see Jetifier errors after pulling updates, ensure your gradle cache is clean as described above.
+
 ## Testing
 - `npm run test:watch`
 
