@@ -20,6 +20,36 @@ ___
 1. `npm start`
 2. `emulator -avd <emulator-name>`
 
+## Troubleshooting
+
+### Android Build Errors (aapt2 resource loading failures)
+
+If you encounter build errors related to Android SDK or aapt2, try the following:
+
+1. **Clean the build cache:**
+   ```bash
+   cd android
+   ./gradlew clean
+   cd ..
+   ```
+
+2. **Clear gradle cache (if issue persists):**
+   ```bash
+   cd android
+   ./gradlew clean
+   ./gradlew cleanBuildCache
+   cd ..
+   rm -rf android/.gradle
+   rm -rf android/app/build
+   ```
+
+3. **Rebuild the app:**
+   ```bash
+   npx react-native run-android
+   ```
+
+**Note:** This project uses Android API level 34. Make sure you have the Android SDK Platform 34 installed in your Android SDK Manager.
+
 ## Testing
 - `npm run test:watch`
 
