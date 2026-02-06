@@ -4,11 +4,11 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 buildscript {
     ext {
-        buildToolsVersion = "35.0.0"
-        minSdkVersion = 21
-        compileSdkVersion = 35
-        targetSdkVersion = 35
-        kotlin_version = '2.2.10'
+        buildToolsVersion = "34.0.0"
+        minSdkVersion = 24
+        compileSdkVersion = 34
+        targetSdkVersion = 34
+        kotlin_version = '1.8.22'
 
         if (System.properties['os.arch'] == "aarch64") {
             // For M1 Users we need to use the NDK 24 which added support for aarch64
@@ -57,6 +57,19 @@ allprojects {
     configurations.all {
         resolutionStrategy {
             force 'org.assertj:assertj-core:3.27.7'
+        }
+    }
+    
+    // Skip lint tasks for external libraries from node_modules
+    // This prevents build failures from third-party library lint issues
+    afterEvaluate { project ->
+        // Check if project is from node_modules using path separator
+        if (project.path.contains(':node_modules:') || project.path.startsWith(':node_modules')) {
+            project.tasks.configureEach { task ->
+                if (task.name.startsWith('lint')) {
+                    task.enabled = false
+                }
+            }
         }
     }
 }

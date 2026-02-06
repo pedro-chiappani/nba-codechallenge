@@ -261,8 +261,15 @@ android {
             storePassword = keystoreProperties["storePassword"] as String
         }
     }
-    namespace 'com.rn'
+    namespace 'com.resulnba'
 
+    lint {
+        // Create a baseline to track known issues in third-party libraries
+        // while still catching new issues in project code
+        baseline = file("lint-baseline.xml")
+        // Don't check external dependencies for lint issues
+        checkDependencies = false
+    }
 
     buildTypes {
         debug {
