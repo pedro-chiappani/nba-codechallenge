@@ -61,10 +61,13 @@ These versions are tested and compatible. After pulling updates, clean your grad
 
 ### Package/Namespace Compilation Errors
 
-If you encounter errors like `package com.resulnba does not exist` when compiling, this typically means gradle cache needs to be cleared after namespace changes. The project configuration:
+If you encounter errors like `package com.resulnba does not exist` or `MissingClass` when compiling, this typically means gradle cache needs to be cleared after namespace changes. The project configuration:
 - Application ID: `com.resulnba`
 - Namespace: `com.resulnba` (generates BuildConfig in this package)
 - Java source package: `com.rn` (with explicit BuildConfig imports)
+- AndroidManifest.xml: Uses fully qualified class names (e.g., `com.rn.MainActivity`)
+
+The manifest declares `package="com.resulnba"` for the applicationId but references classes using their full package names (`com.rn.*`) since the Java source code is in a different package than the namespace.
 
 After pulling updates, always clean gradle cache as described above.
 
