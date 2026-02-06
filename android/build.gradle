@@ -59,4 +59,16 @@ allprojects {
             force 'org.assertj:assertj-core:3.27.7'
         }
     }
+    
+    // Skip lint tasks for external libraries from node_modules
+    // This prevents build failures from third-party library lint issues
+    afterEvaluate { project ->
+        if (project.path.contains('node_modules')) {
+            project.tasks.configureEach { task ->
+                if (task.name.startsWith('lint')) {
+                    task.enabled = false
+                }
+            }
+        }
+    }
 }
