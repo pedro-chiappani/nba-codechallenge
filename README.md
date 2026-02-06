@@ -77,6 +77,20 @@ If you encounter errors like `Failed to transform ... using Jetifier` or `Unsupp
 
 Jetifier is no longer needed for modern React Native projects. If you see Jetifier errors after pulling updates, ensure your gradle cache is clean as described above.
 
+### Android Lint Errors
+
+If you encounter lint errors during Android builds (e.g., `NewApi` errors from third-party libraries), the project is configured to handle these appropriately:
+- Lint errors from external dependencies don't abort the build
+- NewApi checks are disabled for known third-party library issues
+- Java 8 features (like forEach) are safely desugared by the Android build tools
+
+The lint configuration in `android/app/build.gradle` is set to:
+- `abortOnError false` - Prevents build failures from lint warnings
+- `checkDependencies false` - Skips checking external dependencies
+- `disable 'NewApi'` - Disables API level compatibility checks
+
+This is standard for React Native projects that use third-party libraries with modern Java features.
+
 ## Testing
 - `npm run test:watch`
 
