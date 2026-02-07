@@ -54,6 +54,7 @@ allprojects {
     }
     
     // Force patched version of assertj-core to fix XXE vulnerability
+    // This overrides React Native's vulnerable version (3.21.0)
     configurations.all {
         resolutionStrategy {
             force 'org.assertj:assertj-core:3.27.7'
