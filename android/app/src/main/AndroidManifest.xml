@@ -10,6 +10,8 @@
       android:enableOnBackInvokedCallback="true">
     
     <!-- Support for 16KB page sizes (required for Android 15+) -->
+    <!-- This property is forward-compatible and works with targetSdkVersion 34 -->
+    <!-- It will be recognized by Android 15+ devices when the app runs on them -->
     <property android:name="android.build.optimization.16kPageSize" android:value="true"/>
 
     <activity 

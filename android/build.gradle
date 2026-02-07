@@ -6,6 +6,8 @@ buildscript {
     ext {
         buildToolsVersion = "34.0.0"
         minSdkVersion = 24
+        // Using API 34 instead of 35 due to known aapt2 resource table parsing bugs in API 35
+        // 16KB page size support is forward-compatible and declared in AndroidManifest.xml
         compileSdkVersion = 34
         targetSdkVersion = 34
         kotlin_version = '1.8.22'
