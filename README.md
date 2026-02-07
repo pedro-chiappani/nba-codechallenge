@@ -48,16 +48,16 @@ If you encounter build errors related to Android SDK or aapt2, try the following
    npx react-native run-android
    ```
 
-**Note:** This project uses Android API level 35 and Kotlin 1.8.22. Make sure you have the Android SDK Platform 35 installed in your Android SDK Manager.
+**Note:** This project uses Android API level 35 and Kotlin 1.9.0. Make sure you have the Android SDK Platform 35 installed in your Android SDK Manager.
 
-**Important:** This project uses Android Gradle Plugin 8.1.4 to properly support API level 35 and comply with Google Play requirements for 16KB page size support.
+**Important:** This project uses Android Gradle Plugin 8.1.4 and Gradle 8.2 to properly support API level 35 and comply with Google Play requirements for 16KB page size support.
 
 ### Kotlin Dexing Errors (D8/R8 failures)
 
 If you encounter errors related to Kotlin dexing (e.g., `Error while dexing`, `com.android.tools.r8.kotlin`), this is usually due to Kotlin version incompatibility. The project uses:
 - Android Gradle Plugin 8.1.4
-- Gradle 8.0.2
-- Kotlin 1.8.22
+- Gradle 8.2
+- Kotlin 1.9.0
 - React Native 0.68.2
 - Android API level 35
 
