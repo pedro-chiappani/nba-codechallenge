@@ -6,7 +6,11 @@
       android:icon="@mipmap/ic_launcher"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
-      android:theme="@style/AppTheme">
+      android:theme="@style/AppTheme"
+      android:enableOnBackInvokedCallback="true">
+    
+    <!-- Support for 16KB page sizes (required for Android 15+) -->
+    <property android:name="android.build.optimization.16kPageSize" android:value="true"/>
 
     <activity 
       android:name="com.rn.MainActivity"
