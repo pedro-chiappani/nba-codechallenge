@@ -10,7 +10,7 @@ buildscript {
         // Upgraded to AGP 8.1.4 to properly support API 35 and fix aapt2 issues
         compileSdkVersion = 35
         targetSdkVersion = 35
-        kotlin_version = '1.8.22'
+        kotlin_version = '1.9.0'
 
         if (System.properties['os.arch'] == "aarch64") {
             // For M1 Users we need to use the NDK 24 which added support for aarch64
