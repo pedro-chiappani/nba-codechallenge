@@ -322,7 +322,9 @@ dependencies {
         exclude group:'com.facebook.flipper'
     }
     
-    // Force patched version of assertj-core to fix XXE vulnerability (test scope only)
+    // Force patched version of assertj-core to fix XXE vulnerability
+    // Vulnerable: 1.4.0 - 3.27.6, Patched: 3.27.7
+    // Explicitly declare for test scopes (also forced globally in root build.gradle)
     testImplementation 'org.assertj:assertj-core:3.27.7'
     androidTestImplementation 'org.assertj:assertj-core:3.27.7'
 

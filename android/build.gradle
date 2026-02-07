@@ -54,6 +54,9 @@ allprojects {
     }
     
     // Force patched version of assertj-core to fix XXE vulnerability
+    // Vulnerable versions: 1.4.0 - 3.27.6 (including 3.21.0)
+    // Patched version: 3.27.7
+    // This forces ALL transitive dependencies to use the safe version
     configurations.all {
         resolutionStrategy {
             force 'org.assertj:assertj-core:3.27.7'
