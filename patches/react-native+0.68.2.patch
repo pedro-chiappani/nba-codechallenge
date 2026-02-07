@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native/ReactAndroid/build.gradle b/node_modules/react-native/ReactAndroid/build.gradle
+index f49c6e2..4bc9f86 100644
+--- a/node_modules/react-native/ReactAndroid/build.gradle
++++ b/node_modules/react-native/ReactAndroid/build.gradle
+@@ -400,7 +400,7 @@ dependencies {
+     testImplementation("org.powermock:powermock-module-junit4-rule:${POWERMOCK_VERSION}")
+     testImplementation("org.powermock:powermock-classloading-xstream:${POWERMOCK_VERSION}")
+     testImplementation("org.mockito:mockito-core:${MOCKITO_CORE_VERSION}")
+-    testImplementation("org.assertj:assertj-core:3.21.0")
++    testImplementation("org.assertj:assertj-core:3.27.7") // Patched: CVE fix for XXE vulnerability
+     testImplementation("org.robolectric:robolectric:${ROBOLECTRIC_VERSION}")
+ 
+     androidTestImplementation(fileTree(dir: "src/main/third-party/java/buck-android-support/", include: ["*.jar"]))

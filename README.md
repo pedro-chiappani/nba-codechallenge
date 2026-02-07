@@ -11,10 +11,12 @@
 ___
 
 ## Installing the App (Only once)
-1. `npm i`
+1. `npm i` (automatically applies security patches via postinstall)
 2. `npm start`
 3. `emulator -avd <emulator-name>`
 4. `npx react-native run-android` / `npx react-native run-ios`
+
+**Note**: The project uses [patch-package](https://www.npmjs.com/package/patch-package) to apply security fixes to dependencies. Patches are automatically applied during `npm install`.
 
 ## Running the App
 1. `npm start`
