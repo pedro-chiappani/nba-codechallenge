@@ -1,40 +1,43 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import React, {useCallback} from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Button,
-  Alert,
   TouchableOpacity,
-  Image,
+  ActivityIndicator,
 } from 'react-native';
 import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
-import {SvgCssUri} from 'react-native-svg';
-//import { equipos } from '../hooks/equipos';
 import TeamItem from '../components/teamItem';
+import TeamLogo from '../components/TeamLogo';
 import useGetTeams from '../hooks/useGetTeams';
 import {HomeScreenProps} from '../types/navigation';
 import {Team} from '../types/team';
-import { render } from '@testing-library/react-native';
 
 const TeamsScreen = () => {
-  const {dato, loado, erro} = useGetTeams();
+  const {dato, loado, erro, refetch} = useGetTeams();
+
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch]),
+  );
+
   //console.log(data?.map(team => team.WikipediaLogoUrl));
   const navigation = useNavigation();
   const equipos = require('../hooks/equipos.json');
 
   const renderCell = (team: Team, index: number) => {
-    const secondary = ['Heat', 'Rockets', 'Nets']
-    const whites =['Spurs']
+    const secondary = ['Heat', 'Rockets', 'Nets'];
+    const whites = ['Spurs'];
     let uri = team.WikipediaLogoUrl;
-    if (uri.includes("Cleveland")){
-      uri = "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cleveland_Cavaliers_logo.svg"
-    }
-    if (uri.includes("Clippers")){
-      uri = "https://upload.wikimedia.org/wikipedia/en/e/ed/Los_Angeles_Clippers_%282024%29.svg"
-    }
-    const pers = equipos.find((e: { equipo: string; }) => e.equipo == team.Name)
+    // if (uri.includes("Cleveland")){
+    //   uri = "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cleveland_Cavaliers_logo.svg"
+    // }
+    // if (uri.includes("Clippers")){
+    //   uri = "https://upload.wikimedia.org/wikipedia/en/e/ed/Los_Angeles_Clippers_%282024%29.svg"
+    // }
+    const pers = equipos.find((e: {equipo: string}) => e.equipo == team.Name);
 
     return (
       <TouchableOpacity
@@ -46,22 +49,58 @@ const TeamsScreen = () => {
             teamName: `${team.Name}  ${pers ? '(' + pers.persona + ')' : ''}`,
           })
         }
-        style={[styles.container, {backgroundColor: secondary.includes(team.Name)?`#${team.SecondaryColor}`:`#${team.PrimaryColor}`}]}>
-        <SvgCssUri
+        style={[
+          styles.container,
+          {
+            backgroundColor: secondary.includes(team.Name)
+              ? `#${team.SecondaryColor}`
+              : `#${team.PrimaryColor}`,
+          },
+        ]}>
+        <TeamLogo
           uri={uri}
-          width={"100%"}
-          height={"100%"}
-          fill={'black'}
+          teamKey={team.Key}
+          teamName={team.Name}
+          primaryColor={team.PrimaryColor}
+          secondaryColor={team.SecondaryColor}
         />
       </TouchableOpacity>
     );
   };
 
-
   return (
     <GestureHandlerRootView>
-    <FlatList data={dato}
-     renderItem={({item,index}) => renderCell(item,index)}/>
+      <View style={{padding: 10, backgroundColor: '#f5f5f5'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <Text style={styles.title}>Equipos</Text>
+          <TouchableOpacity onPress={refetch} disabled={loado}>
+            <Text
+              style={[
+                {fontSize: 16, color: '#007AFF'},
+                loado && {opacity: 0.5},
+              ]}>
+              ↻ {loado ? 'Cargando...' : 'Actualizar'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {loado && (
+          <ActivityIndicator
+            size="small"
+            color="#0000ff"
+            style={{marginTop: 10}}
+          />
+        )}
+      </View>
+      <FlatList
+        data={dato}
+        renderItem={({item, index}) => renderCell(item, index)}
+        contentContainerStyle={{paddingBottom: 80}}
+      />
     </GestureHandlerRootView>
   );
 };
