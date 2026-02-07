@@ -48,9 +48,7 @@ If you encounter build errors related to Android SDK or aapt2, try the following
    npx react-native run-android
    ```
 
-**Note:** This project uses Android API level 34 and Kotlin 1.8.22. Make sure you have the Android SDK Platform 34 installed in your Android SDK Manager.
-
-**Important:** Android API level 35 has known aapt2 resource table parsing bugs that cause build failures. Please use API level 34 instead.
+**Note:** This project uses Android API level 35 (Android 15) and Kotlin 1.8.22. Make sure you have the Android SDK Platform 35 installed in your Android SDK Manager. The app supports 16 KB memory page sizes as required by Google Play for apps targeting Android 15 or later.
 
 ### Kotlin Dexing Errors (D8/R8 failures)
 
@@ -58,7 +56,7 @@ If you encounter errors related to Kotlin dexing (e.g., `Error while dexing`, `c
 - Android Gradle Plugin 7.4.2
 - Kotlin 1.8.22
 - React Native 0.68.2
-- Android API level 34
+- Android API level 35
 
 These versions are tested and compatible. After pulling updates, clean your gradle cache as described above.
 
