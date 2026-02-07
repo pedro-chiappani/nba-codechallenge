@@ -9,8 +9,8 @@ function useGetMatches() {
   const [err, setErr] = useState(null);
   const date = new Date();
   date.setDate(date.getDate() - 1);
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
+  let day = date.getDate().toString().padStart(2, '0');
+  let month = (date.getMonth() + 1).toString().padStart(2, '0');
   let year = date.getFullYear();
   let currentDate = `${year}-${month}-${day}`;
   // let currentDate = "2023-05-27"
