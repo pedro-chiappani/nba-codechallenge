@@ -1,10 +1,11 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import React, {useState, useCallback} from 'react';
 import {
   View,
   TouchableOpacity,
   Text,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native';
 import {HomeScreenProps} from '../types/navigation';
 import Clipboard, {useClipboard} from '@react-native-clipboard/clipboard';
@@ -13,7 +14,13 @@ import ScoreItem from '../components/scoreitem';
 import useGetScores from '../hooks/useGetScores';
 
 const ScoreScreen = () => {
-  const {dat, load, err} = useGetScores();
+  const {dat, load, err, refetch} = useGetScores();
+
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
   const navigation = useNavigation<HomeScreenProps>();
   const scores = dat.filter(score => score.IsClosed);
 
@@ -59,6 +66,9 @@ const ScoreScreen = () => {
           <Text style={styles.title}>{fechaRes}</Text>
 
           <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity onPress={refetch} disabled={load}>
+              <Text style={[styles.text, load && {opacity: 0.5}]}>↻ {load ? 'Cargando...' : 'Actualizar'}  </Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={copyToClipboard}>
               <Text style={styles.text} >Copiar  </Text>
             </TouchableOpacity>
@@ -67,6 +77,7 @@ const ScoreScreen = () => {
             </TouchableOpacity>
           </View>
           </View>
+          {load && <ActivityIndicator size="small" color="#0000ff" style={{marginTop: 10}} />}
           <Text></Text>
           <FlatList
             data={scores}
