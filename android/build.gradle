@@ -57,6 +57,12 @@ allprojects {
     configurations.all {
         resolutionStrategy {
             force 'org.assertj:assertj-core:3.27.7'
+            eachDependency { details ->
+                if (details.requested.group == 'org.assertj' && details.requested.name == 'assertj-core') {
+                    details.useVersion '3.27.7'
+                    details.because 'CVE fix: XXE vulnerability in versions <= 3.27.6'
+                }
+            }
         }
     }
     
