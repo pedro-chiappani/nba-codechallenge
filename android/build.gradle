@@ -6,9 +6,11 @@ buildscript {
     ext {
         buildToolsVersion = "34.0.0"
         minSdkVersion = 24
-        compileSdkVersion = 34
-        targetSdkVersion = 34
-        kotlin_version = '1.8.22'
+        // Using API 35 to comply with Google Play requirements
+        // Upgraded to AGP 8.1.4 to properly support API 35 and fix aapt2 issues
+        compileSdkVersion = 35
+        targetSdkVersion = 35
+        kotlin_version = '1.9.0'
 
         if (System.properties['os.arch'] == "aarch64") {
             // For M1 Users we need to use the NDK 24 which added support for aarch64
@@ -23,7 +25,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath('com.android.tools.build:gradle:7.4.2')
+        classpath('com.android.tools.build:gradle:8.1.4')
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("de.undercouch:gradle-download-task:5.6.0")
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -54,6 +56,9 @@ allprojects {
     }
     
     // Force patched version of assertj-core to fix XXE vulnerability
+    // Vulnerable versions: 1.4.0 - 3.27.6 (including 3.21.0)
+    // Patched version: 3.27.7
+    // This forces ALL transitive dependencies to use the safe version
     configurations.all {
         resolutionStrategy {
             force 'org.assertj:assertj-core:3.27.7'
