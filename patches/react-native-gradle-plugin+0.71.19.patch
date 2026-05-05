@@ -1,0 +1,89 @@
+diff --git a/node_modules/react-native-gradle-plugin/.gradle/8.1.1/executionHistory/executionHistory.bin b/node_modules/react-native-gradle-plugin/.gradle/8.1.1/executionHistory/executionHistory.bin
+new file mode 100644
+index 0000000..417a82f
+Binary files /dev/null and b/node_modules/react-native-gradle-plugin/.gradle/8.1.1/executionHistory/executionHistory.bin differ
+diff --git a/node_modules/react-native-gradle-plugin/.gradle/8.1.1/executionHistory/executionHistory.lock b/node_modules/react-native-gradle-plugin/.gradle/8.1.1/executionHistory/executionHistory.lock
+new file mode 100644
+index 0000000..ccba8cb
+Binary files /dev/null and b/node_modules/react-native-gradle-plugin/.gradle/8.1.1/executionHistory/executionHistory.lock differ
+diff --git a/node_modules/react-native-gradle-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock b/node_modules/react-native-gradle-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+new file mode 100644
+index 0000000..e80b1bb
+Binary files /dev/null and b/node_modules/react-native-gradle-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock differ
+diff --git a/node_modules/react-native-gradle-plugin/.gradle/buildOutputCleanup/cache.properties b/node_modules/react-native-gradle-plugin/.gradle/buildOutputCleanup/cache.properties
+new file mode 100644
+index 0000000..87bdf82
+--- /dev/null
++++ b/node_modules/react-native-gradle-plugin/.gradle/buildOutputCleanup/cache.properties
+@@ -0,0 +1,2 @@
++#Thu Aug 28 17:07:46 GMT-03:00 2025
++gradle.version=8.14
+diff --git a/node_modules/react-native-gradle-plugin/.gradle/file-system.probe b/node_modules/react-native-gradle-plugin/.gradle/file-system.probe
+new file mode 100644
+index 0000000..9252009
+Binary files /dev/null and b/node_modules/react-native-gradle-plugin/.gradle/file-system.probe differ
+diff --git a/node_modules/react-native-gradle-plugin/build.gradle.kts b/node_modules/react-native-gradle-plugin/build.gradle.kts
+index 5ea92ee..5537499 100644
+--- a/node_modules/react-native-gradle-plugin/build.gradle.kts
++++ b/node_modules/react-native-gradle-plugin/build.gradle.kts
+@@ -7,7 +7,6 @@
+ 
+ import org.gradle.api.internal.classpath.ModuleRegistry
+ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+-import org.gradle.configurationcache.extensions.serviceOf
+ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+ 
+ plugins {
+@@ -40,13 +39,7 @@ dependencies {
+ 
+   testImplementation("junit:junit:4.13.2")
+ 
+-  testRuntimeOnly(
+-      files(
+-          serviceOf<ModuleRegistry>()
+-              .getModule("gradle-tooling-api-builders")
+-              .classpath
+-              .asFiles
+-              .first()))
++  
+ }
+ 
+ java {
+diff --git a/node_modules/react-native-gradle-plugin/build/kotlin/compileKotlin/build-history.bin b/node_modules/react-native-gradle-plugin/build/kotlin/compileKotlin/build-history.bin
+new file mode 100644
+index 0000000..ef2bcc2
+Binary files /dev/null and b/node_modules/react-native-gradle-plugin/build/kotlin/compileKotlin/build-history.bin differ
+diff --git a/node_modules/react-native-gradle-plugin/build/kotlin/compileKotlin/dirty-sources.txt b/node_modules/react-native-gradle-plugin/build/kotlin/compileKotlin/dirty-sources.txt
+new file mode 100644
+index 0000000..cfe1265
+--- /dev/null
++++ b/node_modules/react-native-gradle-plugin/build/kotlin/compileKotlin/dirty-sources.txt
+@@ -0,0 +1,27 @@
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/BackwardCompatUtils.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/Os.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/model/ModelCodegenConfigAndroid.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/model/ModelPackageJson.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/ReactExtension.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/JsonUtils.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/model/ModelCodegenConfig.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/internal/PrivateReactExtension.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/GenerateCodegenSchemaTask.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/FileUtils.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/internal/PrepareJSCTask.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/internal/utils/PrefabPreprocessingEntry.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/NdkConfiguratorUtils.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/internal/PreparePrefabHeadersTask.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/TaskUtils.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/AgpConfiguratorUtils.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/internal/PrepareGlogTask.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/BundleHermesCTask.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/BuildCodegenCLITask.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/internal/PrepareLibeventTask.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/PathUtils.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/ReactPlugin.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/DependencyUtils.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/GenerateCodegenArtifactsTask.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/internal/PrepareBoostTask.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/TaskConfiguration.kt
++/home/pepe-notebook/Proyectos Personales/nba-codechallenge/node_modules/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/ProjectUtils.kt
+\ No newline at end of file

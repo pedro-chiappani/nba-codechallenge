@@ -1,11 +1,12 @@
-import {useNavigation} from '@react-navigation/native';
-import React, { useState} from 'react';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import React, { useState, useCallback} from 'react';
 import {
   View,
   TouchableOpacity,
   Text,
   StyleSheet,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import useGetMatches from '../hooks/useGetMatches';
 import {HomeScreenProps} from '../types/navigation';
@@ -14,7 +15,13 @@ import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
 import MatchItem from '../components/matchitem';
 
 const MatchScreen = () => {
-  const {data, loading, error} = useGetMatches();
+  const {data, loading, error, refetch} = useGetMatches();
+
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
   let matches = data.filter(m => (m.Status !== "NotNecessary" && m.Status !== "Canceled")).filter(m => !m.IsClosed)
   let matchesFinished = matches.filter(m => m.IsClosed)
   const navigation = useNavigation<HomeScreenProps>();
@@ -55,6 +62,9 @@ const MatchScreen = () => {
         {fechaPartidos}
       </Text>
       <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity onPress={refetch} disabled={loading}>
+              <Text style={[styles.text, loading && {opacity: 0.5}]}>↻ {loading ? 'Cargando...' : 'Actualizar'}  </Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={copyToClipboard}>
               <Text style={styles.text} >Copiar  </Text>
             </TouchableOpacity>
@@ -63,6 +73,7 @@ const MatchScreen = () => {
             </TouchableOpacity>
           </View>
           </View>
+          {loading && <ActivityIndicator size="small" color="#0000ff" style={{marginTop: 10}} />}
       <Text></Text>
       <FlatList
         data={matches}

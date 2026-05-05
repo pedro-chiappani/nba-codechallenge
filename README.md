@@ -20,6 +20,90 @@ ___
 1. `npm start`
 2. `emulator -avd <emulator-name>`
 
+## Troubleshooting
+
+### Android Build Errors (aapt2 resource loading failures)
+
+If you encounter build errors related to Android SDK or aapt2, try the following:
+
+1. **Clean the build cache:**
+   ```bash
+   cd android
+   ./gradlew clean
+   cd ..
+   ```
+
+2. **Clear gradle cache (if issue persists):**
+   ```bash
+   cd android
+   ./gradlew clean
+   ./gradlew cleanBuildCache
+   cd ..
+   rm -rf android/.gradle
+   rm -rf android/app/build
+   ```
+
+3. **Rebuild the app:**
+   ```bash
+   npx react-native run-android
+   ```
+
+**Note:** This project uses Android API level 35 and Kotlin 1.9.0. Make sure you have the Android SDK Platform 35 installed in your Android SDK Manager.
+
+**Important:** This project uses Android Gradle Plugin 8.1.4 and Gradle 8.2 to properly support API level 35 and comply with Google Play requirements for 16KB page size support.
+
+### Kotlin Dexing Errors (D8/R8 failures)
+
+If you encounter errors related to Kotlin dexing (e.g., `Error while dexing`, `com.android.tools.r8.kotlin`), this is usually due to Kotlin version incompatibility. The project uses:
+- Android Gradle Plugin 8.1.4
+- Gradle 8.2
+- Kotlin 1.9.0
+- React Native 0.68.2
+- Android API level 35
+
+These versions are tested and compatible. After pulling updates, clean your gradle cache as described above.
+
+### Package/Namespace Compilation Errors
+
+If you encounter errors like `package com.resulnba does not exist` or `MissingClass` when compiling, this typically means gradle cache needs to be cleared after namespace changes. The project configuration:
+- Application ID: `com.resulnba`
+- Namespace: `com.resulnba` (generates BuildConfig in this package)
+- Java source package: `com.rn` (with explicit BuildConfig imports)
+- AndroidManifest.xml: Uses fully qualified class names (e.g., `com.rn.MainActivity`)
+
+The manifest declares `package="com.resulnba"` for the applicationId but references classes using their full package names (`com.rn.*`) since the Java source code is in a different package than the namespace.
+
+After pulling updates, always clean gradle cache as described above.
+
+### Jetifier Transformation Errors
+
+If you encounter errors like `Failed to transform ... using Jetifier` or `Unsupported class file major version`, this indicates Jetifier is trying to process modern Java bytecode. The project configuration:
+- **Jetifier is disabled** (`android.enableJetifier=false`)
+- All dependencies use AndroidX natively
+- No legacy `android.support.*` libraries
+
+Jetifier is no longer needed for modern React Native projects. If you see Jetifier errors after pulling updates, ensure your gradle cache is clean as described above.
+
+### Android Lint Errors
+
+If you encounter lint errors during Android builds (e.g., `NewApi` errors from third-party libraries), the project is configured to handle these appropriately:
+- Lint tasks are disabled for all libraries in `node_modules` (configured in `android/build.gradle`)
+- Known issues in external dependencies are tracked in `android/app/lint-baseline.xml`
+- New issues in project code will still fail the build to maintain code quality
+- External dependencies are not checked to avoid false positives
+
+The project uses two levels of lint configuration:
+
+1. **Global configuration** in `android/build.gradle`:
+   - Disables all lint tasks for projects in `node_modules`
+   - Prevents third-party library lint tasks from running (e.g., `:react-native-change-icon:lintDebug`)
+
+2. **App-level configuration** in `android/app/build.gradle`:
+   - `baseline = file("lint-baseline.xml")` - Tracks known issues separately
+   - `checkDependencies = false` - Skips checking external dependencies
+
+This multi-level approach ensures the app's own code is checked while preventing build failures from third-party library lint issues. Java 8 features (like forEach in react-native-change-icon) are safely desugared by the Android build tools.
+
 ## Testing
 - `npm run test:watch`
 
