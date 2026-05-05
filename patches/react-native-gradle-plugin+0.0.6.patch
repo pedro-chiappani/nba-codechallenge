@@ -1,5 +1,4 @@
 diff --git a/node_modules/react-native-gradle-plugin/build.gradle.kts b/node_modules/react-native-gradle-plugin/build.gradle.kts
-index 1234567..abcdefg 100644
 --- a/node_modules/react-native-gradle-plugin/build.gradle.kts
 +++ b/node_modules/react-native-gradle-plugin/build.gradle.kts
 @@ -10,7 +10,7 @@ import org.gradle.configurationcache.extensions.serviceOf
