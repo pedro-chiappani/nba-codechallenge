@@ -148,8 +148,8 @@ android {
         applicationId "com.resulnba"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 24
-        versionName "1.4.3"
+        versionCode 25
+        versionName "1.4.4"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {
@@ -321,7 +321,7 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
     }
-    
+
     // Force patched version of assertj-core to fix XXE vulnerability
     // Vulnerable: 1.4.0 - 3.27.6, Patched: 3.27.7
     // Explicitly declare for test scopes (also forced globally in root build.gradle)
